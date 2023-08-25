@@ -1,0 +1,10 @@
+/frontend/asan-melody/.next
+/frontend/asan-melody/node_modules
+/frontend/asan-melody/public
+/frontend/asan-melody/package-lock.json
+
+/backend/src/.env
+/backend/node_modules
+/backend/src/access.log
+/backend/src/messages.txt
+/backend/package-lock.json

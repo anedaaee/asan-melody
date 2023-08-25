@@ -1,0 +1,63 @@
+root{
+    background: var(--color-secondary);
+}
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: "Montserrat", sans-serif;
+    --font-secondary: "Raleway", sans-serif; 
+}
+  
+/* Colors */
+:root {
+    --color-default: #2b180d;
+    --color-primary: #144272;
+    --color-secondary: #1b2f45;
+    --color-a : #e9d4c1;
+    --color-button :#144272;
+}
+
+div .music-group-container{
+    padding-top: 5vh;
+    background: #000;
+    width: 100vw;
+    height: 80vh;
+    display: inline-flex;
+    
+}
+div .music-group-container .image{
+    background: url('../../asset/images/Home-music-group.jpg');
+    background-size: cover;
+    width: 80vw;
+    height: 60vh;
+    border-radius: 20px;
+    margin-left: 10vw;
+    filter: blur(2px);
+}
+
+div .music-group-container .text{
+    width: 70vw;
+    height: 50vh;
+    margin-top: 5vh;
+    position: absolute;
+    margin-left: 15vw;
+    color: var(--color-a);
+    font-size: 15px;
+    font-family: var(--font-default);
+}
+div .music-group-container .text blockquote {
+    border-left: 3px solid var(--color-a);
+    font-size: 15px;
+    font-family: var(--font-default);
+}
+div .music-group-container .text blockquote p{
+    margin-left: 10px;
+}
+@media (max-height : 400px){
+    div .music-group-container .text blockquote {
+        border-left: 0px;
+        border-bottom: 3px solid var(--color-a);
+        display: inline-flex;
+        flex-wrap: wrap;
+        font-size: 12px;
+    }
+}
