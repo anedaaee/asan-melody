@@ -11,13 +11,17 @@ const pool = require('./db/mysql')
 const loadMessages = require('./functions/loadMessage')
 const responseMessage = require('./functions/readMessage')
 const routerUse = require('./routerUse.js');
-const { log } = require('console');
 const fileUpload = require('express-fileupload')
+const passport = require('passport')
+require('./middleware/passport')(passport)
+
+
+
 const port = process.env.PORT
 
 const app = express()
 
-//app.use(fileUpload())
+app.use(passport.initialize());
 app.use(express.json())
 app.use(helmet())
 app.use(cors())
@@ -38,6 +42,7 @@ routerUse.app_use(app)
 // Error handeling
 app.use((err, req, res, next) => {
     if (err) {
+        console.log(err);
         let message = responseMessage(2)
         if (err.customError) { message = responseMessage(err.customError) }
         if (!err.statusCode) { err.statusCode = 500 }
@@ -52,12 +57,9 @@ app.use((err, req, res, next) => {
 // 404 handeling
 app.use((req, res) => {
     let message = responseMessage(1)
-    console.log(message);
     res.status(404).send(message)
 })
 
-//set db poll app
-app.locals.db = pool
 
 //create server
 app.listen(port , () => {

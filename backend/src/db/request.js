@@ -1,7 +1,12 @@
 
 function request(query, params , req) {
     return new Promise((resolve, reject) => {
-        const pool = req.app.locals.db
+        let pool;
+        if(req.app.locals.db){
+            pool = req.app.locals.db
+        }else {
+            pool = req
+        }
         pool.getConnection((err, connection) => {
             if (err) {
                 reject(err);

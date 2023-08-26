@@ -2,17 +2,14 @@ const express = require('express')
 const Joi = require('joi')
 const responseMessage = require('../functions/readMessage')
 const authCtrl = require('../controller/authCtrl')
-
 const router = new express.Router()
+const passport = require('passport')
+//require('../middleware/passport')(passport)
 
-router.post('/login',async(req,res) => {
-    try{
-        res.send('hi')
-        console.log('hi');
-    }catch{
-        
-    }
+router.get('/' ,passport.authenticate('jwt', { session: false }),async(req,res) => {
+    res.send('hiiiiiiiia')
 })
+
 router.post('/signup',async(req,res) => {
     try{
         const schema = Joi.object({
@@ -67,4 +64,41 @@ router.post('/signup',async(req,res) => {
 
     }
 })
+router.post('/signin', async (req, res , next) => {
+    try{
+
+        const schema = Joi.object({
+            username: Joi.string()
+                .required(),
+            password: Joi.string()
+                .required(),
+        })
+    
+        const value = await schema.validateAsync(req.body)
+           
+        const result = await authCtrl.signin(req,value)
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+        })
+    }catch(err){
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
+            if(err.details[0].path[0] === 'password') { message = responseMessage(7)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+
+})
+
 module.exports = router
