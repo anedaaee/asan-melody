@@ -1,10 +1,43 @@
 const express = require('express')
 const Joi = require('joi')
 const responseMessage = require('../functions/readMessage')
-const authCtrl = require('../controller/authCtrl')
+const userCtrl = require('../controller/userCtrl')
 const router = new express.Router()
 
-router.post('/signup',async(req,res) => {
+router.get('/getUserInfo' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            username : Joi.string()
+                .required()
+        })
+        
+        const values = await schema.validateAsync(req.query)
+
+        const result = await userCtrl.getUser(req,values)
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result[0]
+            }
+        })
+
+    }catch(err){
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+
+router.patch('/updateUserInfo' , async(req,res) => {
     try{
         const schema = Joi.object({
             firstName: Joi.string()
@@ -23,8 +56,6 @@ router.post('/signup',async(req,res) => {
                 .min(3)
                 .max(30)
                 .required(),
-            password: Joi.string()
-                .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&()])[A-Za-z\d@$!%*#?&()]{8,}$/),
             phone : Joi.number()
                 .integer()
                 .min(1000000000)
@@ -32,9 +63,10 @@ router.post('/signup',async(req,res) => {
         })
 
         const values = await schema.validateAsync(req.body)
-        const result = await authCtrl.signup(req,values)
-        
-        res.status(201).send({
+
+        const result = await userCtrl.updateUser(req,values)
+
+        res.status(200).send({
             "metadata": responseMessage(5),
             "body": {
                 "type": "object",
@@ -48,7 +80,6 @@ router.post('/signup',async(req,res) => {
             if(err.details[0].path[0] === 'lastName') { message = responseMessage(10)}
             if(err.details[0].path[0] === 'email') { message = responseMessage(8)}
             if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
-            if(err.details[0].path[0] === 'password') { message = responseMessage(7)}
             if(err.details[0].path[0] === 'phone') { message = responseMessage(11)}
         }
         if(err.isCustom){
@@ -58,32 +89,30 @@ router.post('/signup',async(req,res) => {
 
     }
 })
-router.post('/signin', async (req, res , next) => {
+router.delete('/deleteUserInfo' , async (req,res) => {
     try{
-
         const schema = Joi.object({
-            username: Joi.string()
-                .required(),
-            password: Joi.string()
-                .required(),
+            username : Joi.string()
+                .required()
         })
-    
-        const value = await schema.validateAsync(req.body)
-           
-        const result = await authCtrl.signin(req,value)
+        
+        const values = await schema.validateAsync(req.body)
+
+        const result = await userCtrl.deleteUser(req,values)
 
         res.status(200).send({
             "metadata": responseMessage(5),
             "body": {
                 "type": "object",
-                "data": result
+                "data": result[0]
             }
         })
+
     }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
-            if(err.details[0].path[0] === 'password') { message = responseMessage(7)}
         }
         if(err.isCustom){
             message = err.reason
@@ -92,7 +121,5 @@ router.post('/signin', async (req, res , next) => {
             "metadata": message
         })
     }
-
 })
-
 module.exports = router

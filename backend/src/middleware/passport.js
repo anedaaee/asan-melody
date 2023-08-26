@@ -13,12 +13,12 @@ const strategy = new JWTStrategy(options,async(payload , done) => {
     try{
         let today = Date.now() / 1000;
         if( today > payload.exp){
-            // const query = `select firstName,lastName,email,username,role,isActive,phone from users where username=?;`;
-            // const result = await request(query,[token.user.username],appPool)
+            const query = `select firstName,lastName,email,username,role,isActive,phone from users where username=?;`;
+            const result = await request(query,[token.user.username],appPool)
 
-            // if(!result[0]){
-            //     throw { customError: 11, statusCode: 401}
-            // }
+            if(!result[0]){
+                throw { customError: 11, statusCode: 401}
+            }
             done(null,false,{message : 'token expired'});
         }else{
             done(null,payload.sub.user);

@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const CustomError = require('../functions/customErr')
 const utils = require('../functions/utils')
+
 exports.signup = async (req,values) => {
     try{
         let query = `SELECT count(username) as username_number FROM users WHERE username = ? ;`
