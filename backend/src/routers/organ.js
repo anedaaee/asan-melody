@@ -4,22 +4,20 @@ const responseMessage = require('../functions/readMessage')
 const organCtrl = require('../controller/organCtrl')
 const router = new express.Router()
 
-router.get('/getUserInfo' , async (req,res) => {
+router.get('/getOrgans' , async (req,res) => {
     try{
- 
+        const result = await organCtrl.getOrgan(req);
+
         res.status(200).send({
             "metadata": responseMessage(5),
             "body": {
-                "type": "object",
-                "data": ''
+                "type": "array",
+                "data": result
             }
         })
 
     }catch(err){
         let message = responseMessage(4)
-        if(err.details) {
-            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
-        }
         if(err.isCustom){
             message = err.reason
         }
