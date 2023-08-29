@@ -27,7 +27,8 @@ router.post('/reserve',async(req,res)=>{
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+            if(err.details[0].path[0] === 'class') { message = responseMessage(29)}
         }
         if(err.isCustom){
             message = err.reason
@@ -61,7 +62,8 @@ router.delete('/deleteReserve',async(req,res)=>{
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+            if(err.details[0].path[0] === 'class') { message = responseMessage(29)}
         }
         if(err.isCustom){
             message = err.reason
@@ -92,7 +94,7 @@ router.get('/getReserveByUser',async(req,res)=>{
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
         }
         if(err.isCustom){
             message = err.reason
@@ -124,7 +126,7 @@ router.get('/getReserveByOrgan',async(req,res)=>{
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'organ') { message = responseMessage(30)}
         }
         if(err.isCustom){
             message = err.reason
@@ -147,9 +149,6 @@ router.get('/getAllReserve',async(req,res)=>{
         })
     }catch(err){
         let message = responseMessage(4)
-        if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
-        }
         if(err.isCustom){
             message = err.reason
         }
@@ -183,7 +182,8 @@ router.post('/purchase',async(req,res) => {
         console.log(err);
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+            if(err.details[0].path[0] === 'class') { message = responseMessage(29)}
         }
         if(err.isCustom){
             message = err.reason
@@ -215,10 +215,10 @@ router.post('/admit',async(req,res) => {
             }
         })
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+            if(err.details[0].path[0] === 'class') { message = responseMessage(29)}
         }
         if(err.isCustom){
             message = err.reason
@@ -241,11 +241,7 @@ router.get('/getNonAdmitPurchases',async(req,res) => {
             }
         })
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
-        if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
-        }
         if(err.isCustom){
             message = err.reason
         }
@@ -274,10 +270,9 @@ router.get('/getUserClass',async(req,res) => {
             }
         })
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
         }
         if(err.isCustom){
             message = err.reason
@@ -307,10 +302,9 @@ router.get('/getUserPurchase',async(req,res) => {
             }
         })
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
         }
         if(err.isCustom){
             message = err.reason
