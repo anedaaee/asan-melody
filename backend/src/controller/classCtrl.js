@@ -95,7 +95,7 @@ exports.refactorClass = async (req,values) => {
 }
 exports.getClasses = async (req) => {
     try{
-        const query = `SELECT * FROM asan_melody.classes;`
+        const query = `SELECT * FROM asan_melody.classes WHERE isActive=1;`
 
         const result = await request(query,[],req)
 
@@ -104,7 +104,7 @@ exports.getClasses = async (req) => {
 }
 exports.getClassById = async (req,values) => {
     try{
-        const query = `SELECT * FROM asan_melody.classes WHERE class_id=?;`
+        const query = `SELECT * FROM asan_melody.classes WHERE class_id=? AND isActive=1;`
 
         const result = await request(query,[values.classId],req)
 
@@ -113,7 +113,7 @@ exports.getClassById = async (req,values) => {
 }
 exports.getClassByOrgan = async (req,values) => {
     try{
-        const query = `SELECT * FROM asan_melody.classes WHERE organ=?;`
+        const query = `SELECT * FROM asan_melody.classes WHERE organ=? AND isActive=1;`
 
         const result = await request(query,[values.organ],req)
 
