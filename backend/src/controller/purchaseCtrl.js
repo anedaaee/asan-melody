@@ -16,6 +16,22 @@ exports.reserve = async(req,values) => {
         query = 'SELECT * FROM asan_melody.reserved_class WHERE class = ? AND `user` = ?;'
 
         const result = await request(query,[ values.class , values.user],req)
+
+        return result[0]
+        
+    }catch(err){throw err}
+}
+
+exports.deleteReserve = async(req,values) => {
+    try{
+
+        let query = 'DELETE FROM asan_melody.reserved_class WHERE class = ? AND `user` = ?;'
+
+        await request(query,[ values.class , values.user],req)
+        
+        query = 'SELECT * FROM asan_melody.reserved_class WHERE class = ? AND `user` = ?;'
+
+        const result = await request(query,[ values.class , values.user],req)
         
         return result[0]
         
