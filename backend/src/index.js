@@ -21,6 +21,7 @@ const port = process.env.PORT
 
 const app = express()
 
+app.use(fileUpload())
 app.use(passport.initialize());
 app.use(express.json())
 app.use(helmet())

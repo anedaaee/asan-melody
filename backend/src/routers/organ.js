@@ -39,7 +39,7 @@ router.get('/getOrganById' , async (req,res) => {
         const result = await organCtrl.getOrganById(req,values);
 
         res.status(200).send({
-            "metadata": responseMessage(14),
+            "metadata": responseMessage(5),
             "body": {
                 "type": "object",
                 "data": result
@@ -47,6 +47,46 @@ router.get('/getOrganById' , async (req,res) => {
         })
 
     }catch(err){
+        let message = responseMessage(4)
+        if(err.isCustom){
+            message = err.reason
+        }
+        if(err.details) {
+            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+
+router.post('/addOrgan' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            name : Joi.string()
+                .required(),
+            manager : Joi.string()
+                .required(),
+            address : Joi.string()
+                .required(),
+            phone : Joi.string()
+                .required(),
+            type : Joi.string()
+                .required(),        
+            description : Joi.string()
+                .required(),      
+        })
+
+        const values = await schema.validateAsync(req.query)
+
+        await organCtrl.addOrgan(req,values);
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+        })
+
+    }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.isCustom){
             message = err.reason
