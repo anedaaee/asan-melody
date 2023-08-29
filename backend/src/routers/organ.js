@@ -90,8 +90,14 @@ router.post('/addOrgan' , async (req,res) => {
         })
 
     }catch(err){
-        console.log(err);
-        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'name') { message = responseMessage(17)}
+            if(err.details[0].path[0] === 'manager') { message = responseMessage(18)}
+            if(err.details[0].path[0] === 'address') { message = responseMessage(19)}
+            if(err.details[0].path[0] === 'phone') { message = responseMessage(20)}
+            if(err.details[0].path[0] === 'type') { message = responseMessage(21)}
+            if(err.details[0].path[0] === 'description') { message = responseMessage(22)}
+        }
         if(err.isCustom){
             message = err.reason
         }
@@ -122,8 +128,10 @@ router.patch('/updateProfileImage' , async (req,res) => {
         })
 
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+        }
         if(err.isCustom){
             message = err.reason
         }
@@ -154,8 +162,10 @@ router.patch('/updateBackgroundImage' , async (req,res) => {
         })
 
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+        }
         if(err.isCustom){
             message = err.reason
         }
@@ -195,8 +205,15 @@ router.patch('/updateOrgan' , async (req,res) => {
         })
 
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'name') { message = responseMessage(17)}
+            if(err.details[0].path[0] === 'manager') { message = responseMessage(18)}
+            if(err.details[0].path[0] === 'address') { message = responseMessage(19)}
+            if(err.details[0].path[0] === 'phone') { message = responseMessage(20)}
+            if(err.details[0].path[0] === 'description') { message = responseMessage(22)}
+            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+        }
         if(err.isCustom){
             message = err.reason
         }
@@ -226,8 +243,10 @@ router.delete('/deleteOrgan' , async (req,res) => {
         })
 
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+        }
         if(err.isCustom){
             message = err.reason
         }
@@ -259,8 +278,11 @@ router.post('/followOrgan',async(req,res) => {
             }
         })
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'organ') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
+        }
         if(err.isCustom){
             message = err.reason
         }
@@ -287,8 +309,11 @@ router.delete('/unfollowOrgan',async(req,res) => {
             "metadata": responseMessage(5),
         })
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'organ') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
+        }
         if(err.isCustom){
             message = err.reason
         }
