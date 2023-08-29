@@ -36,7 +36,12 @@ router.post('/addClass' , async(req,res) => {
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'teacher') { message = responseMessage(23)}
+            if(err.details[0].path[0] === 'name') { message = responseMessage(24)}
+            if(err.details[0].path[0] === 'description') { message = responseMessage(25)}
+            if(err.details[0].path[0] === 'price') { message = responseMessage(26)}
+            if(err.details[0].path[0] === 'address') { message = responseMessage(27)}
+            if(err.details[0].path[0] === 'organ') { message = responseMessage(28)}
         }
         if(err.isCustom){
             message = err.reason
@@ -66,7 +71,7 @@ router.delete('/deleteClass' , async(req,res) => {
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'classId') { message = responseMessage(29)}
         }
         if(err.isCustom){
             message = err.reason
@@ -96,7 +101,7 @@ router.post('/refactorClass' , async(req,res) => {
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'classId') { message = responseMessage(29)}
         }
         if(err.isCustom){
             message = err.reason
@@ -145,7 +150,7 @@ router.get('/getClassByClassId' , async(req,res) => {
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'classId') { message = responseMessage(29)}
         }
         if(err.isCustom){
             message = err.reason
@@ -175,7 +180,7 @@ router.get('/getClassByOrgan' , async(req,res) => {
     }catch(err){
         let message = responseMessage(4)
         if(err.details) {
-            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+            if(err.details[0].path[0] === 'classId') { message = responseMessage(29)}
         }
         if(err.isCustom){
             message = err.reason
