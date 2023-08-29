@@ -78,8 +78,45 @@ exports.deleteClass = async (req,values) => {
     try{
         const query = `UPDATE asan_melody.classes SET isActive=0 WHERE class_id = ?;`
 
-        await request(query,[values.calssId],req)
+        await request(query,[values.classId],req)
 
         return await getClassById(req,values.classId)
+    }catch(err){throw err}
+}
+
+exports.refactorClass = async (req,values) => {
+    try{
+        const query = `UPDATE asan_melody.classes SET isActive=1 WHERE class_id = ?;`
+
+        await request(query,[values.classId],req)
+
+        return await getClassById(req,values.classId)
+    }catch(err){throw err}
+}
+exports.getClasses = async (req) => {
+    try{
+        const query = `SELECT * FROM asan_melody.classes;`
+
+        const result = await request(query,[],req)
+
+        return result
+    }catch(err){throw err}
+}
+exports.getClassById = async (req,values) => {
+    try{
+        const query = `SELECT * FROM asan_melody.classes WHERE class_id=?;`
+
+        const result = await request(query,[values.classId],req)
+
+        return result[0]
+    }catch(err){throw err}
+}
+exports.getClassByOrgan = async (req,values) => {
+    try{
+        const query = `SELECT * FROM asan_melody.classes WHERE organ=?;`
+
+        const result = await request(query,[values.organ],req)
+
+        return result
     }catch(err){throw err}
 }

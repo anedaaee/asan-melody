@@ -3,6 +3,7 @@
 /frontend/asan-melody/public
 /frontend/asan-melody/package-lock.json
 /backend/profiles
+/backend/classes_image
 /backend/src/.env
 /backend/node_modules
 /backend/src/access.log
