@@ -79,12 +79,213 @@ router.post('/addOrgan' , async (req,res) => {
 
         const values = await schema.validateAsync(req.query)
 
-        await organCtrl.addOrgan(req,values);
+        const result = await organCtrl.addOrgan(req,values);
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message,
+        })
+    }
+})
+
+router.patch('/updateProfileImage' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            id : Joi.number()
+                .integer()
+                .required()
+        })
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await organCtrl.updateProfile_image(req,values);
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.patch('/updateBackgroundImage' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            id : Joi.number()
+                .integer()
+                .required()
+        })
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await organCtrl.updateBackground_image(req,values);
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+            
+        })
+
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.patch('/updateOrgan' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            id : Joi.number()
+                .integer()
+                .required(),
+            name : Joi.string()
+                .required(),
+            manager : Joi.string()
+                .required(),
+            address : Joi.string()
+                .required(),
+            phone : Joi.string()
+                .required(),       
+            description : Joi.string()
+                .required(),      
+        })
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await organCtrl.updateOrgan(req,values);
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.delete('/deleteOrgan' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            id : Joi.number()
+                .integer() 
+                .required()     
+        })
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await organCtrl.deleteOrgan(req,values);
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+
+router.post('/followOrgan',async(req,res) => {
+    try{
+        const schema = Joi.object({
+            organ : Joi.number()
+                .integer()
+                .required(),
+            username : Joi.string()
+                .required()
+        })
+
+        const values = await schema.validateAsync(req.body)
+
+        const result = await organCtrl.followOrgan(req,values);
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+        })
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.delete('/unfollowOrgan',async(req,res) => {
+    try{
+        const schema = Joi.object({
+            organ : Joi.number()
+                .integer()
+                .required(),
+            username : Joi.string()
+                .required()
+        })
+
+        const values = await schema.validateAsync(req.body)
+
+        await organCtrl.unfollowOrgan(req,values);
 
         res.status(200).send({
             "metadata": responseMessage(5),
         })
-
     }catch(err){
         console.log(err);
         let message = responseMessage(4)
