@@ -21,7 +21,6 @@ div .concert-container{
     height: 80vh;
     display: inline-flex;
     box-shadow: inset 0px 0px 20px 10px #000
-    
 }
 div .concert-container .image{
     background: url('../../asset/images/Home-concert.jpg');

@@ -86,6 +86,7 @@
     align-items: center;
 }
 .auth-login{
+    text-decoration: none;
     width: 100px;
     height: 50px;
     margin-right: 20px;
@@ -98,7 +99,7 @@
     z-index: 1;
 }
 .auth-signup{
-
+    text-decoration: none;
     margin-left: 95px;
     width: 105px;
     height: 50px;
@@ -117,18 +118,17 @@
 }
 
 .auth-signup:hover{
-    transform: translate(-5px,+5px);
+    transform: translate(+5px,-5px);
 }
 
-.auth-login .Link{
-    text-decoration: none;
-    color: var(--color-a);
+.Link{
     font-family: var(--font-primary);
 }
-.auth-signup .Link{
-    text-decoration: none;
+#login{
+    color: var(--color-a);
+}
+#signup{
     color: var(--color-secondary);
-    font-family: var(--font-primary);
 }
 @media (max-width: 1100px){
     .auth-containter {

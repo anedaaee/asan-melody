@@ -28,12 +28,13 @@ export default function Hero() {
                             </div>
                         </div>
                         <div className="auth-containter">
-                            <div className="auth-login">
-                                <Link className="Link" href="View/Pages/Auth/Login.js">login</Link>
-                            </div>
-                            <div className="auth-signup">
-                                <Link className="Link" href="#">signup</Link>
-                            </div>
+                            
+                            <a className="auth-login" href="pages/Login">
+                                <div className="Link" id="login">login</div>
+                            </a>
+                            <a className="auth-signup"  href="pages/Signup">
+                                <div className="Link" id="signup">signup</div>
+                            </a>
                         </div>
                     </div>
                 </div>

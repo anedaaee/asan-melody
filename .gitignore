@@ -2,6 +2,7 @@
 /frontend/asan-melody/node_modules
 /frontend/asan-melody/public
 /frontend/asan-melody/package-lock.json
+/frontend/asan-melody/src/app/.env
 /backend/profiles
 /backend/classes_image
 /backend/receipts

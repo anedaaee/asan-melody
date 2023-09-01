@@ -71,18 +71,12 @@ nav.header-nav ul li a:hover{
 #check{
     display: none;
 }
-@media (max-width : 1300px){
+
+@media (max-width : 1495px){
     label.logo{
-        font-size: 30px;
-        padding-left: 50px;
+        padding: 5px 20px;
+        font-size: 25px;
     }
-    nav.header-nav ul li a{
-        font-size: 16px;
-    }
-
-}
-@media (max-width : 1100px){
-
     .checkBtn {
         display: block;
     }

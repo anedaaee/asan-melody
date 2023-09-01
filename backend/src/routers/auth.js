@@ -54,7 +54,9 @@ router.post('/signup',async(req,res) => {
         if(err.isCustom){
             message = responseMessage(3)
         }
-        res.status(400).send(message)
+        return res.status(400).send({
+            "metadata": message
+        })
 
     }
 })
