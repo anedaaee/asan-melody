@@ -34,7 +34,7 @@ exports.signin = async (req,values) => {
         let result = await request(query , [values.username] , req)
         
         if(result[0].username_number === 0){
-            throw new CustomError('username error' , responseMessage(3))
+            throw new CustomError('username error' , responseMessage(6))
         }
 
         query = `SELECT * FROM users WHERE username = ? ;`

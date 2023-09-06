@@ -90,6 +90,7 @@ router.post('/addOrgan' , async (req,res) => {
         })
 
     }catch(err){
+        let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'name') { message = responseMessage(17)}
             if(err.details[0].path[0] === 'manager') { message = responseMessage(18)}
@@ -109,6 +110,7 @@ router.post('/addOrgan' , async (req,res) => {
 
 router.patch('/updateProfileImage' , async (req,res) => {
     try{
+        console.log('hi');
         const schema = Joi.object({
             id : Joi.number()
                 .integer()
@@ -128,6 +130,7 @@ router.patch('/updateProfileImage' , async (req,res) => {
         })
 
     }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
@@ -162,6 +165,7 @@ router.patch('/updateBackgroundImage' , async (req,res) => {
         })
 
     }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
@@ -255,7 +259,39 @@ router.delete('/deleteOrgan' , async (req,res) => {
         })
     }
 })
+router.put('/refactorOrgan' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            id : Joi.number()
+                .integer() 
+                .required()     
+        })
 
+        const values = await schema.validateAsync(req.query)
+
+        const result = await organCtrl.refactorOrgan(req,values);
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+        })
+
+    }catch(err){
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'id') { message = responseMessage(14)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
 router.post('/followOrgan',async(req,res) => {
     try{
         const schema = Joi.object({

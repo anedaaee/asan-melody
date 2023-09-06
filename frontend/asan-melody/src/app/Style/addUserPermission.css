@@ -1,0 +1,206 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: "Montserrat", sans-serif;
+    --font-secondary: "Raleway", sans-serif; 
+}
+  
+/* Colors */
+:root {
+    --color-default: #031c1a;
+    --color-primary: #031c1a;
+    --color-secondary: #1b2f45;
+    --color-a : #e9d4c1;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html{
+    background: var(--color-default);
+    background-image: linear-gradient(to bottom left,#031c1a,#273f3d,#031c1a);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+}
+
+.permission-container{
+    width: 60vw;
+    margin-top: 20vh;
+    margin-left: 20vw;
+    display: flex;
+}
+
+.permission-picture{
+    background: url('../../../public/admin-usermanagement.jpg');
+    background-size: cover;
+    background-position: right;
+    width: 20vw;
+    height: 60vh;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 10px;
+}
+.permission-picture p{
+    color: var(--color-a);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 25px;
+    font-family: var(--font-default);
+}
+.permission-controll{
+    background-color: #9177d6;
+    width: 40vw;
+    height: 60vh;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 10px;
+    max-width: fit-content;
+    max-height: fit-content;
+    display: inline;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+.permission-froms{
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 2vh;
+}
+.header-text{
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: var(--color-default);
+    font-family: var(--font-default);
+
+}
+#register{
+    text-align: center;
+    font-size: 15px;
+    color: var(--color-default);
+    font-family: var(--font-default);
+}
+#error{
+    margin-left: 30%;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 15px;
+    color: var(--color-default);
+    font-family: var(--font-default);
+}
+#register a{
+    text-decoration: none;
+    color: var(--color-primary);
+    font-family: var(--font-default);
+}
+#register a:hover{
+    color: var(--color-default);
+}
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form {
+    border: solid var(--color-default);
+    background-color: white;
+    border:none;
+    width: 20vw;
+    margin-top: 3vh;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+label{
+    margin-right: 4px;
+}
+.icon{
+    color: #031c1a;
+}
+select{
+    width:  90%;
+    border: none;
+    outline: none;
+    background: none;
+}
+.form option{
+    border: none;
+    outline: none;
+    background: none;
+    padding: 10px;
+    border-radius: 10px;
+    background: #FFF;
+    color: var(--color-primary);
+}
+.form option:hover{
+    background: var(--color-primary);
+    color: var(--color-a);
+}
+button {
+    margin-top: 10vh;
+    margin-left: 5vw;
+    width: 10vw;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+} 
+@media (max-height:740px) {
+    .permission-froms{
+        margin-left: 10vw;
+        margin-right: 10vw;
+        margin-top: 5vh;
+    }
+}
+@media (max-width : 1100px){
+    .froms{
+        margin-left: 2vw;
+        margin-right: 20vw;
+        margin-top: 1vh;
+    }
+    .permission-container{
+        width: 90vw;
+        height: 90vh;
+        margin-top: 5vh;
+        margin-left: 5vw;
+    }
+    .permission-picture{
+        display: none;
+    }
+    .permission-controll{
+        width: 90vw;
+        height: 90vh;
+        border-bottom-right-radius: 50px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 50px;
+    }
+    .header-text{
+        font-size: 20px;
+    }
+    .form{
+        margin-bottom: 10px;
+    }
+    select{
+        font-size: 15px;
+    }
+    .form {
+        border:none;
+        width: 90%;
+        height: 10%;
+    }
+    button {
+        margin-top: 10vh;
+        margin-left: 5vw;
+        width: 30vw;
+    } 
+    #error{
+        margin-left: 15%;
+    }
+}

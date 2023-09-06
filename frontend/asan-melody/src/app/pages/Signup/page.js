@@ -4,7 +4,7 @@ import {FaUser , FaLock ,FaMailBulk , FaUserAlt , FaPhone } from 'react-icons/fa
 
 import signupAPI from '@/app/api/signup';
 
-import style from '../../Style/signup.css'
+import style from '@/app/Style/signup.css'
 
 export default function Signup() {
 
@@ -32,7 +32,7 @@ export default function Signup() {
                     setError(err.response.data.metadata.messageEng)
                 }
             }else{
-                window.location.href = '/'
+                window.location.href = '/Admin'
             }
         })
     }
@@ -84,7 +84,6 @@ export default function Signup() {
                             <input type='number'  placeholder='phone' value={phone} onChange={(e) => setPhone(e.target.value)} required minLength={10} maxLength={10}/>
                         </div>
                         <button type="submit" onClick={handleSubmit}>signup</button>
-                        <p id='register'>have an account? <a href='/pages/Login'>login here</a></p>
                         <p id='error'>{error}</p>
                     </form>
                 </div>

@@ -19,10 +19,10 @@ addClassToDb = async (req,values) => {
     try{
  
         const query = `INSERT INTO asan_melody.classes
-                        (class_id, teacher, name, description, price, address, image, isActive, organ)
-                        VALUES(?, ?, ?, ?, ?, ?, ?, 1, ?);`
+                        (class_id, teacher, name, description, price, address, image, isActive, organ , number)
+                        VALUES(?, ?, ?, ?, ?, ?, ?, 1, ?,?);`
         
-        await request(query,[values.classId , values.teacher , values.name ,values.description ,values.price ,values.address ,values.image ,values.organ],req)
+        await request(query,[values.classId , values.teacher , values.name ,values.description ,values.price ,values.address ,values.image ,values.organ , values.number],req)
 
 
 
@@ -53,7 +53,7 @@ exports.addClass = async (req,values) => {
 
                 const newValues = {
                     classId : classId ,
-                    image : class_image_path,
+                    image : '/classes_image/'+class_image_name,
                     ...values
                 }
 

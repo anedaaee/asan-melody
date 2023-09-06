@@ -128,6 +128,36 @@ router.get('/getUserPermisionbyPermission' , async (req,res) => {
         })
     }
 })
+router.get('/getUserPermisionbyPermissionAndOrgan' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            permission : Joi.string().required(),
+            organ : Joi.number().integer().required(),
+        })
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await userManagementCtrl.getUserPermisionbyPermissionAndOrgan(req,values)
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "array",
+                "data": result
+            }
+        })
+    }catch(err){
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'permission') { message = responseMessage(31)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
 router.get('/getAllUserPermision' , async (req,res) => {
     try{
 

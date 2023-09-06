@@ -20,7 +20,10 @@ router.post('/addClass' , async(req,res) => {
                 .required(),
             organ : Joi.number()
                 .integer()
-                .required(),    
+                .required(),  
+            number : Joi.number()
+                .integer()
+                .required()  
         })
 
         const values = await schema.validateAsync(req.query)
@@ -34,6 +37,7 @@ router.post('/addClass' , async(req,res) => {
             }
         })
     }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'teacher') { message = responseMessage(23)}

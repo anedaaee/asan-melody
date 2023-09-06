@@ -3,7 +3,6 @@ import axios from 'axios';
 import {API_KEY} from '../../../config'
 
 const loginAPI = (values , cb) => {
-
     let data = JSON.stringify({
         username: values.username,
         password: values.password
@@ -17,7 +16,7 @@ const loginAPI = (values , cb) => {
         },
         data : data
     };
-
+    
     axios.request(config)
     .then((response) => {
         cb(response,null)

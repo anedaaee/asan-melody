@@ -6,14 +6,7 @@ const router = new express.Router()
 
 router.get('/getUserInfo' , async (req,res) => {
     try{
-        const schema = Joi.object({
-            username : Joi.string()
-                .required()
-        })
-        
-        const values = await schema.validateAsync(req.query)
-
-        const result = await userCtrl.getUser(req,values)
+        const result = await userCtrl.getUser(req)
 
         res.status(200).send({
             "metadata": responseMessage(5),
@@ -24,6 +17,7 @@ router.get('/getUserInfo' , async (req,res) => {
         })
 
     }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
@@ -36,7 +30,58 @@ router.get('/getUserInfo' , async (req,res) => {
         })
     }
 })
+router.get('/getUsers' , async (req,res) => {
+    try{
+        const result = await userCtrl.getUsers(req)
 
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "array",
+                "data": result
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.get('/getUsersAllDetail' , async (req,res) => {
+    try{
+        const result = await userCtrl.getUsersAllDetail(req)
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "array",
+                "data": result
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
 router.patch('/updateUserInfo' , async(req,res) => {
     try{
         const schema = Joi.object({
@@ -59,7 +104,9 @@ router.patch('/updateUserInfo' , async(req,res) => {
             phone : Joi.number()
                 .integer()
                 .min(1000000000)
-                .max(9999999999)
+                .max(9999999999),
+            role : Joi.string()
+                .required()
         })
 
         const values = await schema.validateAsync(req.body)
@@ -99,6 +146,39 @@ router.delete('/deleteUserInfo' , async (req,res) => {
         const values = await schema.validateAsync(req.body)
 
         const result = await userCtrl.deleteUser(req,values)
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result[0]
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.put('/refactorUserInfo' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            username : Joi.string()
+                .required()
+        })
+        
+        const values = await schema.validateAsync(req.body)
+
+        const result = await userCtrl.refactor(req,values)
 
         res.status(200).send({
             "metadata": responseMessage(5),

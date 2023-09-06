@@ -1,0 +1,215 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: Arial, Helvetica, sans-serif;
+    --font-secondary: "Raleway", sans-serif; 
+}
+  
+/* Colors */
+:root {
+    --color-div: #27293d;
+    --color-primary: #1e1e2f;
+    --color-secondary: #df4fcd;
+    --color-a : #FFF;
+    --color-header : #1d1d2e;
+    --color-input : #363956;
+    --color-text : #bfbfc1;
+}
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    padding: 0;
+    margin: 0px;
+    background-color: var(--color-primary);
+    border-top: 2px solid var(--color-secondary);
+}
+.tasks{
+    display: flex;
+}
+
+.admin-header{
+    width: 100%;
+    height: 8vh;
+    background: var(--color-header);
+}
+.admin-header h1{
+    color: var(--color-a);
+    text-align: left;
+    padding-top: 3vh;
+    font-size: 2vh;
+    font-weight: lighter;
+    text-transform: uppercase;
+    margin-left: 20px;
+    font-family: var(--font-primary);
+}
+.page-container{
+    display: inline-flex;
+}
+.nav-container{
+    display: inline;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: var(--color-secondary);
+    width: fit-content;
+    height: 90vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
+}
+
+.nav-container:hover {
+    width: fit-content;
+    height: 90vh;
+}
+.nav-container:hover .nav-link{
+    display: inline;;
+}
+.nav-link-icon{
+    font-size: 2vh;
+    color: var(--color-a);
+    display: inline;
+}
+.nav-link{
+    color: var(--color-a);
+    display: none;
+    margin-left: 10px;
+    font-size: 2vh;
+    white-space: nowrap;
+}
+.nav-item{
+    display: inline-flex;
+    margin: 10px;
+    flex-grow: 1;
+}
+.nav-item-p{
+    display: inline-flex;
+    margin: 10px;
+    flex-grow: 1;
+    width: 2vw;
+}
+.nav-p{
+    transform: rotate(90deg);
+    color: var(--color-a);
+    padding: 0px;
+    font-size: 30px;
+    margin-top: 15vh;
+    transform-origin: left bottom;
+    white-space: nowrap; 
+    text-transform: uppercase;
+}
+.choose{
+    overflow: hidden;
+    width: 90vw;
+    height:fit-content;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: auto;
+    flex-grow: 1;
+    background: var(--color-div);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.choose div{
+    padding: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.choose a{
+    color: var(--color-text);
+    text-decoration: underline;
+    font-family: var(--font-primary);
+    font-size: 20px;
+}
+.user-table-container{
+    width: 90vw;
+    height: 90vh;
+    margin : 20px;
+    overflow: auto;
+}
+.user-table{
+    background: var(--color-div);
+    color: var(--color-a);
+    border-collapse: collapse;
+    text-align: center;
+    border-radius: 10px;
+    width: 90vw;
+    height: auto;
+}
+.user-table tr{
+    padding: 10px;
+}
+.user-table td {
+    border-top: 1px solid var(--color-text);
+    text-align: left;
+    margin: 5px;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    padding: 10px;
+}
+#update{
+    text-align: left;
+    margin: 5px;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    padding: 10px;
+}
+.user-table th  {
+    text-align: left;
+    margin: 5px;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    padding: 10px;
+}
+.table-input{
+    background: var(--color-input);
+    color: var(--color-text);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: auto;
+    width: 70%;
+}
+.table-input-btn{
+    background: var(--color-input);
+    color: var(--color-text);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+.table-input-btn:hover{
+    background: var(--color-text);
+    color: var(--color-input);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+.add-link{
+    border-radius: 5px;
+    width: fit-content;
+    display: inline-flex;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    background: var(--color-input);
+    padding: 10px;
+    margin: 10px;
+}
+.add-link p{
+    font-size: 15px;
+    margin-top: 2%;
+}
+.add-link:hover{
+    background: var(--color-text);
+    color: var(--color-input);
+}
+.add-icon{
+    font-size: 20px;
+}

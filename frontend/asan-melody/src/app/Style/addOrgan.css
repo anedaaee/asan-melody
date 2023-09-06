@@ -1,0 +1,206 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: "Montserrat", sans-serif;
+    --font-secondary: "Raleway", sans-serif; 
+}
+  
+/* Colors */
+:root {
+    --color-default: #0f2727;
+    --color-primary: #144272;
+    --color-secondary: #1b2f45;
+    --color-a : #8a540b;
+}
+
+
+body{
+    background-color: var(--color-default);
+}
+
+.organ-container{
+    width: 80vw;
+    height: 80vh;
+    margin-top: 10vh;
+    margin-left: 10vw;
+    display: flex;
+}
+
+.organ-picture{
+    background: url('../../../public/admin-organ.jpg');
+    background-size: cover;
+    width: 30vw;
+    height: 80vh;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 10px;
+}
+.organ-picture p{
+    margin-top: 90%;
+    padding: 20px;
+    color: var(--color-default);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 25px;
+    font-family: var(--font-default);
+}
+.organ-controll{
+    background-color: var(--color-a);
+    width: 50vw;
+    height: 80vh;
+    max-width: fit-content;
+    max-height: fit-content;
+    display: inline;
+    overflow: auto;
+    text-overflow: ellipsis;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 10px;
+}
+
+.organ-froms{
+    white-space: nowrap;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 10vh;
+    white-space: nowrap;
+}
+.header-text{
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: var(--color-default);
+    font-family: var(--font-default);
+
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form {
+    border: solid var(--color-default);
+    background-color: white;
+    border:none;
+    width: 20vw;
+    margin-top: 3vh;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+.icon{
+    color: var(--color-default);
+}
+label{
+    margin-right: 4px;
+}
+input{
+    border: none;
+    outline: none;
+    background: none;
+}
+select{
+    border: none;
+    outline: none;
+    background: none;
+}
+button {
+    margin-top: 5vh;
+    margin-left: 5vw;
+    width: 10vw;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+.form-file1{
+    background: #df4fcd;
+    background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca);
+    border-radius: 50%;
+    margin-top: 10px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+} 
+.form-file1:hover{
+    padding: 20px;
+}
+.form-file2:hover{
+    padding: 20px;
+}
+.form-file2{
+    background: #00f2c3;
+    background-image: linear-gradient(to bottom left,#00f2c3,#0098f0,#00f2c3);
+    border-radius: 50%;
+    margin-top: 10px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    margin: 10px;
+} 
+.form-file1 input{
+    display: none;
+} 
+.form-file2 input{
+    display: none;
+} 
+.file-icon{
+    font-size: 30px;
+    color: var(--color-default);
+}
+.file-upload-container{
+    display: flex;
+    margin-left: 7vw;
+}
+@media (max-height:740px) {
+    .organ-froms{
+        margin-left: 10vw;
+        margin-right: 10vw;
+        margin-top: 5vh;
+    }
+}
+@media (max-width : 1100px){
+    .organ-froms{
+        margin-left: 10vw;
+        margin-right: 10vw;
+        margin-top: 1vh;
+    }
+    .organ-container{
+        width: 80vw;
+        height: 80vh;
+        margin-top: 10vh;
+        margin-left: 10vw;
+    }
+    .organ-picture{
+        display: none;
+    }
+    .organ-controll{
+        width: 80vw;
+        height: 80vh;
+        border-bottom-right-radius: 50px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 50px;
+    }
+    .organ-froms{
+        margin-left: 20vw;
+        margin-right: 20vw;
+        margin-top: 1vh;
+    }
+    .header-text{
+        font-size: 20px;
+    }
+    .form-group {
+        margin-bottom: 10px;
+    }
+    
+    .form {
+        border:none;
+        width: 40vw;
+    }
+    button {
+        margin-top: 10vh;
+        margin-left: 5vw;
+        width: 30vw;
+    } 
+}

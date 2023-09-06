@@ -67,9 +67,25 @@ exports.getAllReserve = async(req) => {
 deleteClassAfterPurchase  = async(req,values) => {
     try{
 
-        let query = 'UPDATE asan_melody.classes SET isActive=0 WHERE class_id=?;'
+        let query = `SELECT number FROM asan_melody.classes WHERE class_id=?; `
 
-        await request(query,[ values.class],req)
+        let result = await request(query,[values.class],req)
+
+        let number = result[0].number
+
+        if(number === 0){
+            
+            query = 'UPDATE asan_melody.classes SET isActive=0 WHERE class_id=?;'
+    
+            await request(query,[ values.class],req)
+        
+        }else if (number > 0){
+
+            query = 'UPDATE asan_melody.classes SET number=? WHERE class_id=?;'
+
+            await request(query,[ number -1 , values.class],req)
+        }
+
         
     }catch(err){throw err}
 }
@@ -124,13 +140,13 @@ exports.purchase = async (req,values) => {
                 const receipt_path = path.join(destinationPath,receipt_name)
 
                 const newValues = {
-                    image : receipt_path,
+                    image : '/receipts/' + receipt_name,
                     ...values
                 }
 
                 await addPurchaseToDb(req,newValues)
                 await deleteReserveAfterPurchase(req,newValues)
-                await deleteClassAfterPurchase(req,newValues)
+                //await deleteClassAfterPurchase(req,newValues)
 
                 await fs.promises.writeFile(receipt_path , receipt.data)
 

@@ -44,7 +44,7 @@ getId = async(req) => {
 }
 addOrganToDb = async (req , values)=> {
     try{
-        const query = 'INSERT INTO asan_melody.organizations ( id , name, manager, address, phone, `type`, profile_image, backgroun_image, description) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);'
+        const query = 'INSERT INTO asan_melody.organizations ( id , name, manager, address, phone, `type`, profile_image, background_image, description) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);'
 
         const result = await request(query,[values.id,values.name,values.manager,values.address,values.phone,values.type,values.profile_image,values.background_image,values.description],req)
 
@@ -93,8 +93,8 @@ exports.addOrgan = async (req,values) => {
                 const newValues = {
                     id : id,
                     ...values,
-                    profile_image : profile_image_filePath , 
-                    background_image : background_image_filePath
+                    profile_image : '/profiles/'+ profile_image_name , 
+                    background_image :'/profiles/'+ background_image_name
                 }
 
                 await addOrganToDb(req,newValues)
@@ -121,6 +121,9 @@ exports.updateProfile_image = async (req , values) => {
 
         if (files['profile_image']){
 
+            let oldPath = await request ('SELECT profile_image FROM asan_melody.organizations WHERE id=?',[values.id],req)
+            oldPath = oldPath[0].profile_image
+
             const file = files ['profile_image']
 
             const profile_image_split = file.name.split('.')
@@ -139,9 +142,9 @@ exports.updateProfile_image = async (req , values) => {
             
                 const query = `UPDATE asan_melody.organizations SET profile_image=? WHERE id=?;`
     
-                await request(query,[profile_image_filePath,values.id],req)
+                await request(query,['/profiles/'+profile_image_name,values.id],req)
     
-                await fs.promises.unlink(profile_image_filePath)
+                await fs.promises.unlink(path.join(__dirname, '../..',oldPath))
     
                 await fs.promises.writeFile(profile_image_filePath, file.data);
 
@@ -151,7 +154,8 @@ exports.updateProfile_image = async (req , values) => {
             }
 
         }
-    }catch(err){throw err}
+    }catch(err){
+        throw err}
 }
 
 exports.updateBackground_image = async (req , values) => {
@@ -159,6 +163,9 @@ exports.updateBackground_image = async (req , values) => {
         const files = req.files
 
         if (files['background_image']){
+            
+            let oldPath = await request ('SELECT background_image FROM asan_melody.organizations WHERE id=?',[values.id],req)
+            oldPath = oldPath[0].background_image
 
             const file = files ['background_image']
 
@@ -176,12 +183,12 @@ exports.updateBackground_image = async (req , values) => {
             
             if(background_image_ext==='jpg' || background_image_ext==='jpeg' || background_image_ext==='png'){
                 
-            const query = `UPDATE asan_melody.organizations SET backgroun_image=? WHERE id=?;`
+            const query = `UPDATE asan_melody.organizations SET background_image=? WHERE id=?;`
+                
+            await request(query,['/profiles/'+background_image_name,values.id],req)
 
-            await request(query,[background_image_filePath,values.id],req)
-
-            await fs.promises.unlink(background_image_filePath)
-
+            await fs.promises.unlink(path.join(__dirname, '../..',oldPath))
+            
             await fs.promises.writeFile(background_image_filePath, file.data);
             
             return await getOrgan(req,values.id)
@@ -189,9 +196,9 @@ exports.updateBackground_image = async (req , values) => {
             }else{
                 throw new CustomError('file format',responseMessage(16))
             }
-
         }
-    }catch(err){throw err}
+    }catch(err){
+        throw err}
 }
 
 exports.updateOrgan = async(req,values) =>{
@@ -219,7 +226,18 @@ exports.deleteOrgan = async(req,values) =>{
 
     }catch(err){throw err}
 }
+exports.refactorOrgan = async(req,values) =>{
+    try{
+        const query = `UPDATE asan_melody.organizations
+                            SET isActive=1
+                            WHERE id=?;`
 
+        await request(query , [values.id ],req)
+
+        return await getOrgan(req,values.id)
+
+    }catch(err){throw err}
+}
 exports.followOrgan = async(req,values) => {
     try{
         let query = 'INSERT INTO asan_melody.fallowed_organ (`user`, organ_id) VALUES(?, ?);'

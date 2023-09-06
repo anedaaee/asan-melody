@@ -49,6 +49,15 @@ exports.getUserPermisionbyPermission = async (req,values) => {
         return result
     }catch(err){throw err}
 }
+exports.getUserPermisionbyPermissionAndOrgan = async (req,values) => {
+    try{
+        query = `SELECT * FROM asan_melody.user_management WHERE permission=? AND organ=?;`
+
+        const result = await request(query,[values.permission,values.organ],req)
+
+        return result
+    }catch(err){throw err}
+}
 exports.getAllUserPermision = async (req) => {
     try{
         query = `SELECT * FROM asan_melody.user_management;`

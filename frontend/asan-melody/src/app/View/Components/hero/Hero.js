@@ -1,11 +1,17 @@
-import React from "react"
+import React , {useEffect , useState}from "react"
 import Script from "next/script"
 import Link from "next/link"
 import style from '../../../Style/Main/Hero/Hero.css'
 import 'bootstrap/dist/css/bootstrap.min.css'   
 
 export default function Hero() {
-  
+    
+    const [authToken,setAuthToken] = useState(null)
+    useEffect(() => {
+        setAuthToken(localStorage.getItem('authToken'))
+      },[])
+    
+
     return (
         <section id="hero" className="hero d-flex align-items-center">
             <div className="container">
@@ -27,15 +33,23 @@ export default function Hero() {
                                 </blockquote>
                             </div>
                         </div>
-                        <div className="auth-containter">
+                        {
+                            authToken ? 
+                            (
+                            <div/>  
+                            ):
+                            (
+                            <div className="auth-containter">
                             
-                            <a className="auth-login" href="pages/Login">
-                                <div className="Link" id="login">login</div>
-                            </a>
-                            <a className="auth-signup"  href="pages/Signup">
-                                <div className="Link" id="signup">signup</div>
-                            </a>
-                        </div>
+                                <a className="auth-login" href="pages/Login">
+                                    <div className="Link" id="login">login</div>
+                                </a>
+                                <a className="auth-signup"  href="pages/Signup">
+                                    <div className="Link" id="signup">signup</div>
+                                </a>
+                            </div>
+                            )
+                        }
                     </div>
                 </div>
             </div>
