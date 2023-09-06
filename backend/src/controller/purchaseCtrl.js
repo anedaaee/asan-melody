@@ -178,7 +178,7 @@ exports.admit = async (req,values) => {
 
 exports.getNonAdmitPurchases = async (req) => {
     try{
-        let query = 'SELECT * FROM asan_melody.purchase WHERE admit = 0;'
+        let query = 'SELECT * FROM asan_melody.purchase;'
 
         const result =  await request(query,[],req)
 

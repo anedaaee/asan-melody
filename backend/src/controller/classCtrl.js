@@ -95,7 +95,7 @@ exports.refactorClass = async (req,values) => {
 }
 exports.getClasses = async (req) => {
     try{
-        const query = `SELECT * FROM asan_melody.classes WHERE isActive=1;`
+        const query = `SELECT * FROM asan_melody.classes;`
 
         const result = await request(query,[],req)
 

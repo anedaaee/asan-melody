@@ -47,7 +47,7 @@ export default function Navigation() {
             <hr/>
             <br/>
             <div className="nav-item">
-                <a href="#">
+                <a href="/pages/Admin/purchase">
                     <label htmlFor="nav-link">
                         <MdGroup className="nav-link-icon"/>
                     </label> 

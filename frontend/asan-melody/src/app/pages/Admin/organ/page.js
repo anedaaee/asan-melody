@@ -241,8 +241,8 @@ export default function Organ() {
                             {
                                 showImage?(
                                     <div className='image'>  
-                                        <MdClose className='close-icon' onClick={() => closeImage()}/>
-                                        <img src={`${IMG_KEY}${profileImage}`}></img>
+                                        <MdClose className='close-icon' onClick={() => closeImage()} />
+                                        <img src={`${IMG_KEY}${profileImage}`} onError={(e) => handleImageError(e)} alt={profileImage}></img>
                                     </div>
                                 ):(
                                     <div/>

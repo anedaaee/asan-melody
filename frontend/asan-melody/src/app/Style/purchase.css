@@ -145,6 +145,26 @@ body{
 .admin-page{
     z-index: -1;
 }
+.table-image {
+    width: 40PX;
+    height: 40PX;
+    background-size:cover;
+    border-radius: 50%;
+}
+.table-input-btn{
+    background: var(--color-input);
+    color: var(--color-text);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+.table-input-btn:hover{
+    background: var(--color-text);
+    color: var(--color-input);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
 .image{
     filter: none;
     position: absolute;
@@ -166,83 +186,4 @@ body{
     background-color: rgba(94,94,94,0.9);
     filter: opacity(200px);
     border-radius: 5px;
-}
-.file-icon1{
-    font-size: 22px;
-    color: var(--color-header);
-    background: #df4fcd;
-    background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca);
-    border-radius: 50%;
-    width: fit-content;
-    height: fit-content;
-    padding: 10px;
-}
-.file-icon2{
-    font-size: 22px;
-    color: var(--color-header);
-    background: #00f2c3;
-    background-image: linear-gradient(to bottom left,#00f2c3,#0098f0,#00f2c3);
-    border-radius: 50%;
-    width: fit-content;
-    height: fit-content;
-    padding: 10px;
-}
-.table-image {
-    width: 40PX;
-    height: 40PX;
-    background-size:cover;
-    border-radius: 50%;
-}
-.table-input{
-    background: var(--color-input);
-    color: var(--color-text);
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    overflow: auto;
-    width: 100%;
-}
-.table-input-btn{
-    background: var(--color-input);
-    color: var(--color-text);
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-}
-.table-input-btn2{
-    background: var(--color-input);
-    color: var(--color-text);
-    border: none;
-    border-radius: 5px;
-    display: none;
-    width: 0px;
-    height: 0px;
-}
-.table-input-btn:hover{
-    background: var(--color-text);
-    color: var(--color-input);
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-}
-.add-link{
-    border-radius: 5px;
-    width: fit-content;
-    display: inline-flex;
-    font-family: var(--font-primary);
-    color: var(--color-text);
-    background: var(--color-input);
-    padding: 10px;
-    margin: 10px;
-}
-.add-link p{
-    font-size: 15px;
-    margin-top: 2%;
-}
-.add-link:hover{
-    background: var(--color-text);
-    color: var(--color-input);
-}
-.add-icon{
-    font-size: 20px;
 }

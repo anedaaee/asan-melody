@@ -6,18 +6,22 @@
   
 /* Colors */
 :root {
-    --color-default: #0f2727;
+    --color-default: #691822;
     --color-primary: #144272;
     --color-secondary: #1b2f45;
-    --color-a : #8a540b;
+    --color-a : #e9d4c1;
 }
 
 
-body{
+html{
     background-color: var(--color-default);
+    background-image: linear-gradient(to bottom left,#691822,#273f3d,#691822);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
 }
 
-.organ-container{
+.class-container{
     width: 80vw;
     height: 80vh;
     margin-top: 10vh;
@@ -25,18 +29,16 @@ body{
     display: flex;
 }
 
-.organ-picture{
-    background: url('../../../public/admin-organ.jpg');
+.class-picture{
+    background: url('../../../public/add-class.jpg');
     background-size: cover;
     width: 30vw;
     height: 80vh;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 10px;
 }
-.organ-picture p{
-    margin-top: 90%;
-    padding: 20px;
-    color: var(--color-default);
+.class-picture p{
+    color: var(--color-a);
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
@@ -44,36 +46,55 @@ body{
     font-size: 25px;
     font-family: var(--font-default);
 }
-.organ-controll{
-    background-color: var(--color-a);
+.class-controll{
+    background-color: blanchedalmond;
     width: 50vw;
     height: 80vh;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 10px;
     max-width: fit-content;
     max-height: fit-content;
     display: inline;
     overflow: auto;
     text-overflow: ellipsis;
-    border-bottom-right-radius: 50px;
-    border-top-right-radius: 10px;
 }
 
-.organ-froms{
-    white-space: nowrap;
+.froms{
     margin-left: 15vw;
-    margin-right: 15vw;
-    margin-top: 10vh;
-    white-space: nowrap;
+    margin-right: 10vw;
+    margin-top: 2vh;
 }
 .header-text{
     font-weight: bold;
-    text-align: center;
+    text-align: left;
+    margin-left: 20%;
     font-size: 25px;
     text-transform: uppercase;
     color: var(--color-default);
     font-family: var(--font-default);
 
 }
-
+#register{
+    text-align: center;
+    font-size: 15px;
+    color: var(--color-default);
+    font-family: var(--font-default);
+}
+#error{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 15px;
+    color: var(--color-default);
+    font-family: var(--font-default);
+}
+#register a{
+    text-decoration: none;
+    color: var(--color-primary);
+    font-family: var(--font-default);
+}
+#register a:hover{
+    color: var(--color-default);
+}
 .form-group {
     margin-bottom: 10px;
 }
@@ -87,11 +108,11 @@ body{
     padding: 10px 10px;
     border-radius: 5px;
 }
-.icon{
-    color: var(--color-default);
-}
 label{
     margin-right: 4px;
+}
+.icon{
+    color: #470a11;
 }
 input{
     border: none;
@@ -99,58 +120,10 @@ input{
     background: none;
 }
 select{
+    width:  90%;
     border: none;
     outline: none;
     background: none;
-}
-button {
-    margin-top: 5vh;
-    margin-left: 5vw;
-    width: 10vw;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-}
-.form-file1{
-    background: #df4fcd;
-    background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca);
-    border-radius: 50%;
-    margin-top: 10px;
-    width: fit-content;
-    height: fit-content;
-    padding: 10px;
-} 
-.form-file1:hover{
-    padding: 20px;
-}
-.form-file2:hover{
-    padding: 20px;
-}
-.form-file2{
-    background: #00f2c3;
-    background-image: linear-gradient(to bottom left,#00f2c3,#0098f0,#00f2c3);
-    border-radius: 50%;
-    margin-top: 10px;
-    width: fit-content;
-    height: fit-content;
-    padding: 10px;
-    margin: 10px;
-} 
-.form-file1 input{
-    display: none;
-} 
-.form-file2 input{
-    display: none;
-} 
-.file-icon{
-    font-size: 30px;
-    color: var(--color-default);
-}
-.file-upload-container{
-    display: flex;
-    margin-left: 7vw;
 }
 .form option{
     border: none;
@@ -161,62 +134,91 @@ button {
     background: #FFF;
     color: var(--color-primary);
 }
-.form option:hover{
-    background: var(--color-primary);
-    color: var(--color-a);
+
+button {
+    margin-top: 10vh;
+    margin-left: 5vw;
+    width: 10vw;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+} 
+.form-file1{
+    background: #df4fcd;
+    background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca);
+    border-radius: 50%;
+    margin-top: 10px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    margin-left: 30%;
+} 
+.form-file1:hover{
+    padding: 20px;
 }
+.form-file1 input{
+    display: none;
+}
+.file-icon{
+    font-size: 30px;
+    color: var(--color-default);
+} 
 @media (max-height:740px) {
-    .organ-froms{
+    .froms{
         margin-left: 10vw;
         margin-right: 10vw;
         margin-top: 5vh;
     }
 }
 @media (max-width : 1100px){
-    .organ-froms{
-        margin-left: 10vw;
-        margin-right: 10vw;
+    .froms{
+        margin-left: 2vw;
+        margin-right: 20vw;
         margin-top: 1vh;
     }
-    .organ-container{
-        width: 80vw;
-        height: 80vh;
-        margin-top: 10vh;
-        margin-left: 10vw;
+    .class-container{
+        width: 90vw;
+        height: 90vh;
+        margin-top: 5vh;
+        margin-left: 5vw;
     }
-    .organ-picture{
+    .class-picture{
         display: none;
     }
-    .organ-controll{
-        width: 80vw;
-        height: 80vh;
+    .class-controll{
+        width: 90vw;
+        height: 90vh;
         border-bottom-right-radius: 50px;
         border-top-right-radius: 10px;
         border-bottom-left-radius: 10px;
         border-top-left-radius: 50px;
     }
-    .organ-froms{
-        margin-left: 20vw;
-        margin-right: 20vw;
-        margin-top: 1vh;
-    }
     .header-text{
         font-size: 20px;
+        margin-left: 40%;
     }
     .form-group {
         margin-bottom: 10px;
     }
-    
-    .form {
-        border:none;
-        width: 40vw;
+    input{
+        font-size: 15px;
     }
-    button {
-        margin-top: 10vh;
-        margin-left: 5vw;
-        width: 30vw;
-    } 
     select{
         font-size: 15px;
     }
+    .form {
+        border:none;
+        width: 80vw;
+        height: 3vh;
+    }
+    button {
+        margin-top: 10vh;
+        margin-left: 25vw;
+        width: 30vw;
+    } 
+    .form-file1{
+        margin-left: 50%;
+    } 
 }
