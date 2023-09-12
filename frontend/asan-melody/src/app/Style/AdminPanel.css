@@ -1,0 +1,642 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: Arial, Helvetica, sans-serif;
+    --font-secondary: "Raleway", sans-serif; 
+}
+  
+/* Colors */
+:root {
+    --color-default: #000;
+    --color-primary: #000;
+    --color-secondary: #1b1f23;
+    --color-a : #e9d4c1;
+}
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html{
+    padding: 0;
+    margin: 0px;
+    background-color: var(--color-primary);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+header.main-header{
+    font-family: var(--font-primary);
+}
+
+nav.header-nav{
+    position: fixed;
+    z-index: 2;
+    height: 8vh;
+    width: 100vw;
+}
+label.logo{
+    color: var(--color-a);
+    text-transform: uppercase;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+
+nav.header-nav ul{
+    float: right;
+    margin-right: 20px;
+}
+nav.header-nav ul li{
+    display: inline;
+    line-height: 80px;
+    margin: 0 5px;
+}
+nav.header-nav ul li a{
+    color: var(--color-a);
+    font-size: 17px;
+    padding: 7px 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+nav.header-nav ul li a:hover{
+    color : var(--color-secondary);
+    transition: .5s;
+}
+.checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: none;
+}
+#check{
+    display: none;
+}
+
+@media (max-width : 1495px){
+    label.logo{
+        padding: 5px 20px;
+        font-size: 25px;
+    }
+    .checkBtn {
+        display: block;
+    }
+    nav.header-nav ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-primary);
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    nav.header-nav ul li{
+        display: block;
+    }
+    nav.header-nav ul li a{
+        font-size: 20px;
+    }
+    nav.header-nav ul li a:hover{
+        background-color: var(--color-primary);
+        border: 0px;
+        border-radius: 5px;
+    }
+    #check:checked ~ ul{
+        left: 0%;
+    }
+}
+
+header.login-header{
+    font-family: var(--font-primary);
+}
+
+nav.login-header-nav{
+    position: fixed;
+    z-index: 2;
+    height: 8vh;
+    width: 100vw;
+}
+label.login-logo{
+    color: var(--color-a);
+    text-transform: uppercase;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+    display: inline-block;
+    float: none;
+}
+
+nav.login-header-nav ul.links{
+    float: right;
+    margin-right: 20px;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-primary);
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+}
+
+nav.login-header-nav ul.links li{
+    display: block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+nav.login-header-nav ul.links li a{
+    color: var(--color-a);
+    font-size: 17px;
+    padding: 7px 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+nav.login-header-nav ul.links li a:hover{
+    color : var(--color-secondary);
+    transition: .5s;
+}
+.login-checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: block;
+}
+#login-check{
+    display: none;
+}
+
+.user-checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: left;
+    line-height: 80px;
+    margin-left: 40px;
+    display: block;
+}
+#user-check{
+    display: none;
+}
+
+.user-info-p{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--color-a);
+    display: inline;
+    line-clamp: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.user-info-label{
+    display: inline;
+    margin-right: 2px;
+}
+.user-info{
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-a);
+    border-radius: 10px;
+    width: 250px;
+    height: 350px;
+    position: fixed;
+    margin-left: 40px;  
+}
+.user-info-a{
+    text-decoration: none;
+}
+.user-info-content{
+    max-width: 20vw;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.logout{
+    text-decoration: none;
+    
+}
+.logout-box{
+    background: var(--color-a);
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    margin-left: 90px;
+    margin-top: 40px;
+    color: var(--color-secondary);
+    font-family: var(--font-default);
+    border-radius: 4px;
+}
+.logout-box:hover{
+    transition: .5s;
+    background: var(--color-secondary);
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    margin-left: 90px;
+    margin-top: 40px;
+    color: var(--color-a);
+    font-family: var(--font-default);
+    border-radius: 4px;
+    border: 2px solid var(--color-a);
+}
+@media (max-width : 1495px){
+    label.login-logo{
+        padding: 5px 20px;
+        font-size: 20px;
+    }
+
+    nav.login-header-nav ul.links li a{
+        font-size: 20px;
+    }
+    nav.login-header-nav ul.links li a:hover{
+        background-color: var(--color-primary);
+        border: 0px;
+        border-radius: 5px;
+    }
+    .login-checkBtn{
+        font-size: 25px;
+    }
+    .user-checkBtn{
+        font-size: 20px;
+    }
+
+}
+.icon-header{
+    color: var(--color-a);
+}
+
+.selector{
+    position: absolute;
+    z-index: 10;
+    width: 99%;
+    height: 5vh;
+    background-color: var(--color-secondary);
+    margin: .5%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selector .icon-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selector .icon-container .icon{
+    font-size: 3vh;
+    color: var(--color-a);
+}
+.selector .icon-container .icon:hover{
+    background-color: brown;
+    padding: 5px;
+    border-radius: 10px;
+    transition: .5s;
+}
+
+
+
+@media (max-width : 800px){
+    .selector {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        position: fixed;
+        bottom: 0;
+        margin: 0px;
+    }
+}
+.admin-panel-page{
+    position: absolute;
+    margin-top: 10vh;
+    min-width: 100%;
+    min-height: 10%;
+    max-width: fit-content;
+    max-height: fit-content;
+}
+.admin-panel-page-2{
+    min-width: 100%;
+    min-height: 10%;
+    max-width: fit-content;
+    max-height: fit-content;
+}
+
+.organ-table-container{
+    min-width: 100%;
+    min-height: 50%;
+    max-width: 100%;
+    max-height: 50%;
+    margin : 20px;
+    overflow: auto;
+}
+.organ-table{
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    background: var(--color-div);
+    color: var(--color-a);
+    border-collapse: collapse;
+    text-align: center;
+    border-radius: 10px;
+}
+.organ-table tr{
+    padding: 10px;
+}
+.organ-table td {
+    border-top: 1px solid var(--color-a);
+    text-align: left;
+    margin: 5px;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    padding: 10px;
+}
+.organ-table th  {
+    text-align: left;
+    margin: 5px;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    padding: 10px;
+}
+.table-image {
+    width: 40PX;
+    height: 40PX;
+    background-size:cover;
+    border-radius: 50%;
+}
+.image{
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 40%;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+.image img{
+    width: 25vw;
+    height: auto;
+    background-size: cover;
+    border-radius: 10px;
+    
+}
+.close-icon{
+    position: absolute;
+    font-size: 200%;
+    color: #FFF;
+    background-color: rgba(94,94,94,0.9);
+    filter: opacity(200px);
+    border-radius: 5px;
+}
+.table-input-btn{
+    background: var(--color-secondary);
+    color: var(--color-a);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+.table-input-btn:hover{
+    background: var(--color-a);
+    color: var(--color-secondary);
+    transition: .5s;
+
+}
+.add-link{
+    border-radius: 5px;
+    width: fit-content;
+    display: inline-flex;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    background: var(--color-input);
+    padding: 10px;
+    margin: 10px;
+}
+.add-link p{
+    font-size: 15px;
+    margin-top: 2%;
+}
+.add-link:hover{
+    background: var(--color-a);
+    color: var(--color-default);
+    transition: .5s;
+}
+.add-icon{
+    font-size: 20px;
+}
+
+.setting-container , .post-container{
+    position: absolute;
+    margin-top: 20vh;
+    min-width: 100%;
+    min-height: 10%;
+    max-width: fit-content;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.organ-item{
+    min-width: 90%;
+    min-height: 40vh;
+    max-width: 90%;
+    max-height: fit-content; 
+    overflow: hidden;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    border-radius: 10px;
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.organ-background-image{
+    position: absolute;
+    min-width: 90%;
+    height: 40vh;
+    max-width: 90%;
+    border-radius: 10px;
+    max-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+}
+
+.organ-profile-image{
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px;
+}
+.organ-info{
+    min-width: 60%;
+    min-height: 40vh;
+    max-width: 60%;
+    max-height: fit-content; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.organ-info h1{
+    margin-top: 30px;
+    color: var(--color-a);
+    text-transform: uppercase;
+}
+.organ-info h2,h2,h3,h4{
+    margin-top: 10px;
+    color: var(--color-a);
+}
+
+@media (max-width : 800px) {
+    .organ-item{
+        flex-direction: column;
+        align-items: center;
+        min-width: 90%;
+        min-height: 70vh;
+        max-width: 90%;
+    }
+    
+    .organ-background-image{
+        position: absolute;
+        min-width: 90%;
+        height: 70vh;
+        max-width: 90%;
+    }
+    
+    .organ-profile-image{
+        width: 15vw;
+        height: 15vw;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 20px;
+    }
+    .organ-info{
+        align-items: center;
+    }
+    .organ-info h1, h2,h2,h3,h4{
+        text-align: center;
+    }
+}
+
+.header-organ-item{
+    min-width: 100%;
+    min-height: 40vh;
+    max-width: 90%;
+    max-height: fit-content; 
+    overflow: hidden;
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.header-organ-background-image{
+    position: absolute;
+    min-width: 100%;
+    height: 40vh;
+    max-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+}
+
+.header-organ-profile-image{
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px;
+}
+.header-organ-info{
+    min-width: 60%;
+    min-height: 40vh;
+    max-width: 60%;
+    max-height: fit-content; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.header-organ-info h1{
+    margin-top: 30px;
+    color: var(--color-a);
+    text-transform: uppercase;
+}
+.header-organ-info h2,h2,h3,h4{
+    margin-top: 10px;
+    color: var(--color-a);
+}
+@media (max-width:1000px) {
+    .header-organ-item{
+        height: 50vh;
+    }
+    
+    .header-organ-background-image{
+        height: 50vh;
+    }
+}
+.post-item{
+    background: var(--color-secondary);
+    margin-bottom: 10vh;
+    width: 60vw;
+    height: 80vh;
+    border-radius: 10px;
+}
+.post-image{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+}
+.post-info{
+    width: 100%;
+    height: 50vh;
+    padding: 20px;
+}
+.post-info h1{
+    color: var(--color-a);
+    text-transform: uppercase;
+}
+
+.post-description {
+    width: 100%;
+    height: 30vh;
+    padding: 20px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.button-container{
+    width: 100%;
+    display: flex;
+}
+.post-button{
+    border: none;
+    border-radius: 10px;
+    background: var(--color-primary);
+    color: var(--color-a);
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.post-button:hover{
+    background: var(--color-a);
+    color: var(--color-default);
+    transition: all .5s;
+}
+.post-info p{
+    color: var(--color-a);
+    text-transform: uppercase;
+
+}
+@media (max-width:1000px) {
+    .post-item{
+        width: 80vw;
+    }
+}

@@ -17,6 +17,9 @@ const Academies = () => {
                         <p>Teaching music theory</p>
                         <p>Learning music harmony</p>
                         <p>Group and private classes</p>
+                        <br/>
+                        <hr/>
+                        <p><a href="/pages/MusicAcademies">See Music Academies here</a></p>
                     </blockquote>
                 </div>
             </div>

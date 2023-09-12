@@ -1,12 +1,14 @@
 'use client'
 import React , {useState , useEffect} from "react"
 import Script from "next/script"
-import {MdMenu , MdSettings , MdClass , MdFollowTheSigns} from 'react-icons/md'
+import {MdMenu , MdSettings , MdClass , MdFollowTheSigns , MdMoney , MdShop , MdAdminPanelSettings} from 'react-icons/md'
 import {FaUser} from "react-icons/fa"
 
 import getUserAPI from "@/app/api/getUser"
+import getUserDistinctPermisionAPI from "@/app/api/getUserDistinctPermissionAPI"
 
 import style from '../../../Style/Header/LoginHeader.css'
+import { resolve } from "styled-jsx/css"
 
 
 export default function LoginHeader() {
@@ -16,7 +18,8 @@ export default function LoginHeader() {
     const [navBackground, setNavBackground] = useState("transparent");
     const [userData,setUserdata] = useState({})
     const [loading,setLoading] = useState(true)
-
+    const [permissionsObj , setPermissionObj] = useState({})
+    
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
@@ -58,19 +61,30 @@ export default function LoginHeader() {
     useEffect(() => {
         async function fetch(){
 
-            await getUserAPI((result , err) => {
+            await getUserAPI( async (result , err) => {
                 if(err){
                     //handle server Err
                 }else{
-                    localStorage.setItem('userData',JSON.stringify(result.data.body.data))
-                    setUserdata(JSON.parse(localStorage.getItem('userData')))
-                    setLoading(false)
+
+                    try{
+                        localStorage.setItem('userData',JSON.stringify(result.data.body.data))
+                        setUserdata(JSON.parse(localStorage.getItem('userData')))
+                        
+                        let permissions = await getUserDistinctPermisionAPI({username : JSON.parse(localStorage.getItem('userData')).username});
+                        setPermissionObj(permissions)
+
+                        setLoading(false)
+                        
+                    }catch(err){
+                        console.log(err);
+                    }
+
                 }
             })
         }
         
         fetch()
-        console.log(loading);
+        
         window.addEventListener('scroll', handleScroll);
         
         return () => {
@@ -135,6 +149,34 @@ export default function LoginHeader() {
                             ):
                             (<div/>)
                         }
+                        {
+                            (permissionsObj.admin)? 
+                            (
+                            <div className="user-info-content">
+                                <a className="user-info-a" href="/pages/AdminPanel">
+                                    <label className="user-info-label" htmlFor="user-info-p">
+                                        <MdAdminPanelSettings color="#e9d4c1"/>
+                                    </label>
+                                    <p className="user-info-p" >admin panel</p>
+                                </a>
+                            </div>
+                            ):
+                            (<p>{JSON.stringify(permissionsObj)}</p>)
+                        }
+                        {
+                            (permissionsObj.teacher)? 
+                            (
+                            <div className="user-info-content">
+                                <a className="user-info-a" href="/pages/Teacher">
+                                    <label className="user-info-label" htmlFor="user-info-p">
+                                        <MdClass color="#e9d4c1"/>
+                                    </label>
+                                    <p className="user-info-p" >teacher panel</p>
+                                </a>
+                            </div>
+                            ):
+                            (<div/>)
+                        }
                         <div className="user-info-content">
                             <a className="user-info-a" href="">
                                 <label className="user-info-label" htmlFor="user-info-p">
@@ -149,6 +191,22 @@ export default function LoginHeader() {
                                     <MdFollowTheSigns color="#e9d4c1"/>
                                 </label>
                                 <p className="user-info-p" >my favourite's</p>
+                            </a>
+                        </div>
+                        <div className="user-info-content">
+                            <a  className="user-info-a" href="/pages/Reservation">
+                                <label className="user-info-label" htmlFor="user-info-p">
+                                    <MdShop className="icon-header"/>
+                                </label>
+                                <p className="user-info-p" >my reservation</p>
+                            </a>
+                        </div>
+                        <div className="user-info-content">
+                            <a  className="user-info-a" href="/pages/Purchases">
+                                <label className="user-info-label" htmlFor="user-info-p">
+                                    <MdMoney className="icon-header"/>
+                                </label>
+                                <p className="user-info-p" >my purchases</p>
                             </a>
                         </div>
                         <a className="logout" onClick={handleLogout}>

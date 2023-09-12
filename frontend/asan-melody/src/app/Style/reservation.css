@@ -1,0 +1,484 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: Arial, Helvetica, sans-serif;
+    --font-secondary: "Raleway", sans-serif; 
+}
+  
+/* Colors */
+:root {
+    --color-default: #000;
+    --color-primary: #000;
+    --color-secondary: #1b1f23;
+    --color-a : #e9d4c1;
+}
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html{
+    padding: 0;
+    margin: 0px;
+    background-color: var(--color-primary);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+header.main-header{
+    font-family: var(--font-primary);
+}
+
+nav.header-nav{
+    position: fixed;
+    z-index: 2;
+    height: 8vh;
+    width: 100vw;
+}
+label.logo{
+    color: var(--color-a);
+    text-transform: uppercase;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+
+nav.header-nav ul{
+    float: right;
+    margin-right: 20px;
+}
+nav.header-nav ul li{
+    display: inline;
+    line-height: 80px;
+    margin: 0 5px;
+}
+nav.header-nav ul li a{
+    color: var(--color-a);
+    font-size: 17px;
+    padding: 7px 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+nav.header-nav ul li a:hover{
+    color : var(--color-secondary);
+    transition: .5s;
+}
+.checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: none;
+}
+#check{
+    display: none;
+}
+
+@media (max-width : 1495px){
+    label.logo{
+        padding: 5px 20px;
+        font-size: 25px;
+    }
+    .checkBtn {
+        display: block;
+    }
+    nav.header-nav ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-primary);
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    nav.header-nav ul li{
+        display: block;
+    }
+    nav.header-nav ul li a{
+        font-size: 20px;
+    }
+    nav.header-nav ul li a:hover{
+        background-color: var(--color-primary);
+        border: 0px;
+        border-radius: 5px;
+    }
+    #check:checked ~ ul{
+        left: 0%;
+    }
+}
+
+header.login-header{
+    font-family: var(--font-primary);
+}
+
+nav.login-header-nav{
+    position: fixed;
+    z-index: 2;
+    height: 8vh;
+    width: 100vw;
+}
+label.login-logo{
+    color: var(--color-a);
+    text-transform: uppercase;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+    display: inline-block;
+    float: none;
+}
+
+nav.login-header-nav ul.links{
+    float: right;
+    margin-right: 20px;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-primary);
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+}
+
+nav.login-header-nav ul.links li{
+    display: block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+nav.login-header-nav ul.links li a{
+    color: var(--color-a);
+    font-size: 17px;
+    padding: 7px 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+nav.login-header-nav ul.links li a:hover{
+    color : var(--color-secondary);
+    transition: .5s;
+}
+.login-checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: block;
+}
+#login-check{
+    display: none;
+}
+
+.user-checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: left;
+    line-height: 80px;
+    margin-left: 40px;
+    display: block;
+}
+#user-check{
+    display: none;
+}
+
+.user-info-p{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--color-a);
+    display: inline;
+    line-clamp: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.user-info-label{
+    display: inline;
+    margin-right: 2px;
+}
+.user-info{
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-a);
+    border-radius: 10px;
+    width: 250px;
+    height: 350px;
+    position: fixed;
+    margin-left: 40px;  
+}
+.user-info-a{
+    text-decoration: none;
+}
+.user-info-content{
+    max-width: 20vw;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.logout{
+    text-decoration: none;
+    
+}
+.logout-box{
+    background: var(--color-a);
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    margin-left: 90px;
+    margin-top: 40px;
+    color: var(--color-secondary);
+    font-family: var(--font-default);
+    border-radius: 4px;
+}
+.logout-box:hover{
+    background: var(--color-secondary);
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    margin-left: 90px;
+    margin-top: 40px;
+    color: var(--color-a);
+    font-family: var(--font-default);
+    border-radius: 4px;
+    border: 2px solid var(--color-a);
+}
+@media (max-width : 1495px){
+    label.login-logo{
+        padding: 5px 20px;
+        font-size: 20px;
+    }
+
+    nav.login-header-nav ul.links li a{
+        font-size: 20px;
+    }
+    nav.login-header-nav ul.links li a:hover{
+        background-color: var(--color-primary);
+        border: 0px;
+        border-radius: 5px;
+    }
+    .login-checkBtn{
+        font-size: 25px;
+    }
+    .user-checkBtn{
+        font-size: 20px;
+    }
+
+}
+.icon-header{
+    color: var(--color-a);
+}
+.reserved-container{
+    padding-top: 10vh;
+}
+
+.reserved-item{
+    width: 98%;
+    margin: 1%;
+    min-height: 20vh;
+    max-height: fit-content;
+    background-color: var(--color-secondary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.reserve-item-2{
+    margin: auto;
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.reserve-item-2-button{
+    margin: auto;
+    padding: 10px;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+.reserve-item-2-button button{
+    width: 50%;
+    height: 20%;
+    margin-top: 20px;
+    background: var(--color-default);
+    border: none;
+    border-radius: 10px;
+    color: var(--color-a);
+}
+.reserve-item-2-button label{
+    min-width: 50%;
+    max-width: fit-content;
+    min-height: 20%;
+    max-height: fit-content;
+    margin-top: 20px;
+    background: var(--color-default);
+    border: none;
+    border-radius: 10px;
+    color: var(--color-a);
+    padding: 5px;
+}
+.reserve-item-2-button button:hover{
+    background: var(--color-secondary);
+    border-radius: 10px;
+    color: var(--color-a);
+}
+.reserve-item-2-button label:hover{
+    background: var(--color-secondary);
+    border-radius: 10px;
+    color: var(--color-a);
+}
+#receipt{
+    display: none;
+}
+.reserved-item h1,h2,h3,h5,p{
+    text-align: left;
+    color: var(--color-a);
+}
+.class-image{
+    width: 20%;
+    height: 100%;
+}
+.class-image img{
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width : 800px){
+    .class-image{
+        width: 100%;
+        height: 30%;
+    }
+    .reserved-item{
+        width: 98%;
+        margin: 1%;
+        height: fit-content;
+        background-color: var(--color-secondary);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+        
+    }
+    .reserve-item-2{
+        margin: auto;
+        width: 100%;
+        height: 20%;
+        text-align: center;
+        padding: 10px;
+    }
+    .reserve-item-2-button{
+        margin: auto;
+        padding: 10px;
+        width: fit-content;
+        max-width: 30%;
+        max-height: 100%;
+        height: fit-content;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .reserve-item-2-button button{
+        width: 100%;
+        height: 30%;
+        padding: 20px;
+        margin-top: 20px;
+    }
+}
+.admit-icon{
+    color: var(--color-a);
+    font-size: 40px;
+    font-weight: bold;   
+}
+.reserve-item-icon{
+    width: fit-content;
+    height: 100%;
+    top: 0px;
+}
+.reserve-item-icon #delete-icon {
+    color: var(--color-a);
+    font-size: 30px;
+}
+.reserve-item-icon #delete-icon:hover {
+    color: var(--color-default);
+}
+
+.add-session{
+    padding: 10px;
+    color: var(--color-a);
+    background-color: var(--color-secondary);
+    border: none;
+    border-radius: 5px;
+    margin-left: 45%;
+}
+.add-session:hover{
+    padding: 10px;
+    color: var(--color-secondary);
+    background-color: var(--color-a);
+    border: none;
+    border-radius: 5px;
+    margin-left: 45%;
+}
+.add-session-2{
+    padding: 10px;
+    color: var(--color-a);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.add-session-2:hover{
+    color: var(--color-primary);
+    background-color: var(--color-a);
+}
+.add-session-container{
+    display: none;
+    min-width: 50%;
+    min-height: 60%;
+    background: rgba(27, 31, 35, 0.8); 
+    background-color: var(--color-secondary);
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    border-radius: 10px;
+    border: solid 2px var(--color-a);
+    flex-direction: column;
+    align-items: center;
+}
+.add-session-container textarea{
+    width: 90%;
+    height: 70%;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: var(--color-default);
+    border: none;
+    color: white;
+}
+.close-icon{
+    color: var(--color-a);
+    font-size: 30px;
+    align-self: flex-start;
+}
+@media (max-width:1000px){
+    .add-session-container{
+        min-width: 90%;
+        min-height: 80%;
+        top: 10%;
+        left: 5%;
+    }
+}

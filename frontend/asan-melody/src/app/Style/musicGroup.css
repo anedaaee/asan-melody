@@ -1,0 +1,413 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: Arial, Helvetica, sans-serif;
+    --font-secondary: "Raleway", sans-serif; 
+}
+  
+/* Colors */
+:root {
+    --color-default: #460d13;
+    --color-primary: #460d13;
+    --color-secondary: #7f2730;
+    --color-a : #e9d4c1;
+}
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html{
+    padding: 0;
+    margin: 0px;
+    background-color: var(--color-primary);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+header.main-header{
+    font-family: var(--font-primary);
+}
+
+nav.header-nav{
+    position: fixed;
+    z-index: 2;
+    height: 8vh;
+    width: 100vw;
+}
+label.logo{
+    color: var(--color-a);
+    text-transform: uppercase;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+
+nav.header-nav ul{
+    float: right;
+    margin-right: 20px;
+}
+nav.header-nav ul li{
+    display: inline;
+    line-height: 80px;
+    margin: 0 5px;
+}
+nav.header-nav ul li a{
+    color: var(--color-a);
+    font-size: 17px;
+    padding: 7px 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+nav.header-nav ul li a:hover{
+    color : var(--color-secondary);
+    transition: .5s;
+}
+.checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: none;
+}
+#check{
+    display: none;
+}
+
+@media (max-width : 1495px){
+    label.logo{
+        padding: 5px 20px;
+        font-size: 25px;
+    }
+    .checkBtn {
+        display: block;
+    }
+    nav.header-nav ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-primary);
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    nav.header-nav ul li{
+        display: block;
+    }
+    nav.header-nav ul li a{
+        font-size: 20px;
+    }
+    nav.header-nav ul li a:hover{
+        background-color: var(--color-primary);
+        border: 0px;
+        border-radius: 5px;
+    }
+    #check:checked ~ ul{
+        left: 0%;
+    }
+}
+
+header.login-header{
+    font-family: var(--font-primary);
+}
+
+nav.login-header-nav{
+    position: fixed;
+    z-index: 2;
+    height: 8vh;
+    width: 100vw;
+}
+label.login-logo{
+    color: var(--color-a);
+    text-transform: uppercase;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+    display: inline-block;
+    float: none;
+}
+
+nav.login-header-nav ul.links{
+    float: right;
+    margin-right: 20px;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-primary);
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+}
+
+nav.login-header-nav ul.links li{
+    display: block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+nav.login-header-nav ul.links li a{
+    color: var(--color-a);
+    font-size: 17px;
+    padding: 7px 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+nav.login-header-nav ul.links li a:hover{
+    color : var(--color-secondary);
+    transition: .5s;
+}
+.login-checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: block;
+}
+#login-check{
+    display: none;
+}
+
+.user-checkBtn{
+    font-size: 30px;
+    color: #FFF;
+    float: left;
+    line-height: 80px;
+    margin-left: 40px;
+    display: block;
+}
+#user-check{
+    display: none;
+}
+
+.user-info-p{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--color-a);
+    display: inline;
+    line-clamp: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.user-info-label{
+    display: inline;
+    margin-right: 2px;
+}
+.user-info{
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-a);
+    border-radius: 10px;
+    width: 250px;
+    height: 350px;
+    position: fixed;
+    margin-left: 40px;  
+}
+.user-info-a{
+    text-decoration: none;
+}
+.user-info-content{
+    max-width: 20vw;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.logout{
+    text-decoration: none;
+    
+}
+.logout-box{
+    background: var(--color-a);
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    margin-left: 90px;
+    margin-top: 40px;
+    color: var(--color-secondary);
+    font-family: var(--font-default);
+    border-radius: 4px;
+}
+.logout-box:hover{
+    background: var(--color-secondary);
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    margin-left: 90px;
+    margin-top: 40px;
+    color: var(--color-a);
+    font-family: var(--font-default);
+    border-radius: 4px;
+    border: 2px solid var(--color-a);
+}
+@media (max-width : 1495px){
+    label.login-logo{
+        padding: 5px 20px;
+        font-size: 20px;
+    }
+
+    nav.login-header-nav ul.links li a{
+        font-size: 20px;
+    }
+    nav.login-header-nav ul.links li a:hover{
+        background-color: var(--color-primary);
+        border: 0px;
+        border-radius: 5px;
+    }
+    .login-checkBtn{
+        font-size: 25px;
+    }
+    .user-checkBtn{
+        font-size: 20px;
+    }
+
+}
+
+.hero-image{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    background-size: cover;
+    background-repeat: repeat-x;
+}
+.group-section{
+    display: block;
+}
+.group-container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+.group-div{
+    background: wheat;
+    border-radius: 10px;
+    width: 24.5vw;
+    height: 25vh;
+    margin: .5vw;
+    overflow: hidden;
+    position: relative;
+    max-width: fit-content;
+    max-height: fit-content;
+}
+.background{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 24.5vw;
+    height: 5vh;
+    overflow: hidden;
+    object-fit: cover;
+}
+.image-des-container{
+    display: flex;
+    width: 100%;
+    height: 90%;
+}
+.image-des-container img{
+    margin-top: 3vh;
+    margin-left: 10px;
+    width: 7vw;
+    height: 7vw;
+    border-radius: 50%;
+}
+.des{
+    display: block;
+    width: 13.5;
+    width: 100%;
+    height: 62%;
+    margin: 3%;
+}
+.group-div p{
+    margin-top: 15%;
+    box-sizing: content-box;
+    width: 90%;
+    height: 80%;
+    font-family: var(--font-primary);
+    color: var(--color-default);
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: hidden; 
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.group-div h1{
+    text-transform: uppercase;
+    font-family: var(--font-primary);
+    color: var(--color-default);
+    box-sizing: content-box;
+    width: 100%;
+    height: 10%;
+    word-wrap: break-word;
+}
+@media(min-width:500px) and (max-width:1000px){
+    .group-container{
+        flex-wrap: wrap;
+        width: 98vw;
+    }
+    .group-div{
+        width: 47vw;
+        height: 25vh;
+    }
+    .background{
+        width: 47vw;
+    }
+    .image-des-container img{
+        width: 15vw;
+        height: 15vw;
+    }
+}
+@media (max-width:500px){
+    .group-container{
+        flex-wrap: wrap;
+        margin: 8vw;
+        width: 80vw;
+    }
+    .group-div{
+        width: 80vw;
+        height: 50vh;
+        margin: 0;
+        margin-top: 5vh;
+    }
+    .background{
+        width: 80vw;
+        height: 10vh;
+    }
+    .image-des-container img{
+        width: 15vw;
+        height: 15vw;
+    }
+}
+.follow-btn{
+    background-color: var(--color-a);
+    border: none;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    right: 0;
+    height: 20%;
+    width: 50%;
+    top: 80%;
+    padding: 5px;
+    color: var(--color-primary);
+
+}
+.follow-btn:hover{
+    background-color: var(--color-primary);
+    color: var(--color-a);
+}
+.icon{
+    color: var(--color-primary);
+    margin-right: 4px;
+}
+.follow-btn:hover .icon{
+    color: var(--color-a);
+}
+.icon-header{
+    color: var(--color-a);
+}

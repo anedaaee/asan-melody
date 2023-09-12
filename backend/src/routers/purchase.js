@@ -60,6 +60,7 @@ router.delete('/deleteReserve',async(req,res)=>{
             }
         })
     }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
@@ -179,7 +180,6 @@ router.post('/purchase',async(req,res) => {
             }
         })
     }catch(err){
-        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'user') { message = responseMessage(6)}

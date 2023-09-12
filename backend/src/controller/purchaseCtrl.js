@@ -31,10 +31,22 @@ exports.deleteReserve = async(req,values) => {
 
         await request(query,[ values.class , values.user],req)
         
+        query = 'SELECT number , isActive FROM asan_melody.classes WHERE class_id = ?'
+
+        let classData = await request(query , [values.class] , req)
+        
+        if (classData[0].isActive === 0){
+            query = 'UPDATE asan_melody.classes SET number = ? ,isActive = 1  WHERE class_id = ? ;'
+            await request(query , [classData[0].number + 1 , values.class] , req)
+        }else{
+            query = 'UPDATE asan_melody.classes SET number = ? WHERE class_id = ? ;'
+            await request(query , [classData[0].number + 1 , values.class] , req)
+        }
+
         query = 'SELECT * FROM asan_melody.reserved_class WHERE class = ? AND `user` = ?;'
 
         const result = await request(query,[ values.class , values.user],req)
-        
+
         return result[0]
         
     }catch(err){throw err}
@@ -73,9 +85,9 @@ deleteClassAfterPurchase  = async(req,values) => {
 
         let number = result[0].number
 
-        if(number === 0){
+        if(number - 1=== 0){
             
-            query = 'UPDATE asan_melody.classes SET isActive=0 WHERE class_id=?;'
+            query = 'UPDATE asan_melody.classes SET isActive=0 , number = 0  WHERE class_id=?;'
     
             await request(query,[ values.class],req)
         

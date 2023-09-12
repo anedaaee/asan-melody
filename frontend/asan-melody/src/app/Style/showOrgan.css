@@ -1,0 +1,216 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: Arial, Helvetica, sans-serif;
+    --font-secondary: "Raleway", sans-serif; 
+}
+  
+/* Colors */
+:root {
+    --color-default: #1b1f23;
+    --color-primary: #000;
+    --color-secondary: #000;
+    --color-a : #e9d4c1;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html{
+    padding: 0;
+    margin: 0px;
+    background-color: var(--color-primary);
+    border-top: 2px solid var(--color-secondary);
+}
+
+
+.organ-img-container{
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    z-index: -1;
+    display: inline-block;
+}
+
+.organ-background{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    background-size: cover;
+}
+.organ-info-container{
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+.organ-profile{
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    margin-top : 5vh;
+    margin-left: 3vw;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+}
+
+.organ-info{    
+    width: 40%;
+    height: 40vh;
+    padding: 10px;
+    margin-top: 5vh;
+}
+.manager-info{    
+    width: 40%;
+    height: 40vh;
+    padding: 10px;
+    margin-top: 5vh;
+}
+.organ-info h1, .manager-info h3{
+    margin: 10px;
+    color: var(--color-a);
+    font-family: var(--font-primary);
+}
+.organ-info p , .manager-info p{
+    margin: 10px;
+    color: var(--color-a);
+    font-family: var(--font-primary);
+}
+.header-container{
+    position: relative;
+    height: 40vh;
+    width: 100%;
+}
+.selector{
+    width: 99%;
+    height: 5vh;
+    background-color: var(--color-default);
+    margin: .5%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selector .icon-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selector .icon-container .icon{
+    font-size: 3vh;
+    color: white;
+}
+.classes-container{
+    width: 100%;
+    height: fit-content;
+}
+.class-item{
+    width: 80%;
+    margin-left: 10%;
+    margin-left: 10%;
+    margin-top: 10px;
+    height: 40vh;
+    background-color: var(--color-default);
+    border-radius: 10px;
+    display: flex;
+}
+.class-img{
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+}
+.class-info{
+    width: 60%;
+    height: 100%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.class-info h1 , .class-info h3 , .class-info p {
+    color: var(--color-a);
+}
+.classes-container{
+    margin-bottom: 6vh;
+}
+
+.buy-button{
+    background: var(--color-a);
+    border: none;
+    margin-top:10px;
+    padding: 5px;
+    width: 30%;
+}
+.buy-button:hover{
+    background: var(--color-default);
+    color: var(--color-a) ;
+}
+@media (max-width : 800px){
+    .selector {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        position: fixed;
+        bottom: 0;
+        margin: 0px;
+    }
+    .header-container{
+        height: 100vh;  
+    }
+    .organ-img-container{
+        height: 100%;
+    }
+    .organ-background{
+        height: 100%;
+    }
+    .organ-info-container{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .organ-profile{
+        margin-top: 5px;
+        width: 15vh;
+        height: 15vh;
+    }
+    
+    .organ-info{    
+        text-align: center;
+        width: 100%;
+        height: fit-content;
+        margin-top: 1vh;
+    }
+    .manager-info{  
+        text-align: center;  
+        width: 100%;
+        height: fit-content;
+        margin-top: 1vh;
+    }
+    .class-item{
+        flex-direction: column;
+    }
+    .class-img{
+        width: 100%;
+        height: 30%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        object-fit: cover;
+    }
+    .class-info{
+        width: 100%;
+        height: 70%;
+        text-align: center;
+    }
+    .buy-button{
+        margin-left: 35%;
+    }
+}
+

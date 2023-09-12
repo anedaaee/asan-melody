@@ -99,6 +99,35 @@ router.get('/getUserPermision' , async (req,res) => {
         })
     }
 })
+router.get('/getUserDistinctPermision' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            username : Joi.string().required()
+        })
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await userManagementCtrl.getUserDistinctPermision(req,values)
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "array",
+                "data": result
+            }
+        })
+    }catch(err){
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
 router.get('/getUserPermisionbyPermission' , async (req,res) => {
     try{
         const schema = Joi.object({

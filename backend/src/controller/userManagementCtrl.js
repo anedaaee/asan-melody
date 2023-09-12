@@ -40,6 +40,28 @@ exports.getUserPermision = async (req,values) => {
         return result
     }catch(err){throw err}
 }
+exports.getUserDistinctPermision = async (req,values) => {
+    try{
+        query = `SELECT DISTINCT permission FROM asan_melody.user_management WHERE username=?;`
+
+        const result = await request(query,[values.username],req)
+
+        let permissions = {
+            admin:false,
+            teacher:false
+        }
+
+        for (const permission of result){
+            if(permission.permission === 'admin'){
+                permissions.admin = true
+            }
+            if(permission.permission === 'teacher'){
+                permissions.teacher = true
+            }
+        }
+        return permissions
+    }catch(err){throw err}
+}
 exports.getUserPermisionbyPermission = async (req,values) => {
     try{
         query = `SELECT * FROM asan_melody.user_management WHERE permission=?;`

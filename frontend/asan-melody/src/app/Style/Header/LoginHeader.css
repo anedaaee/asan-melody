@@ -115,9 +115,11 @@ nav.login-header-nav ul.links li a:hover{
     border: 1px solid var(--color-a);
     border-radius: 10px;
     width: 250px;
-    height: 350px;
+    min-height: 350px;
+    max-height: fit-content;
     position: fixed;
     margin-left: 40px;  
+    padding: 10px;
 }
 .user-info-a{
     text-decoration: none;

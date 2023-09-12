@@ -17,6 +17,9 @@ const MusicGroup = () => {
                         <p>We rate the groups to be seen better</p>
                         <p>We link musicians to groups</p>
                         <p>We show them the doors to success</p>
+                        <br/>
+                        <hr/>
+                        <p><a href="/pages/MusicGroup   ">See Music Group here</a></p>
                     </blockquote>
                 </div>
             </div>

@@ -59,6 +59,36 @@ router.get('/getOrganById' , async (req,res) => {
         })
     }
 })
+router.get('/getFollowdOrgan' , async (req,res) => {
+    try{
+        const schema = Joi.object({
+            username : Joi.string()
+                .required()
+        })
+        const values = await schema.validateAsync(req.query)
+
+        const result = await organCtrl.getFollowdOrgan(req,values);
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "array",
+                "data": result
+            }
+        })
+
+    }catch(err){
+        let message = responseMessage(4)
+        if(err.isCustom){
+            message = err.reason
+        }
+        if(err.details) {
+            if(err.details[0].path[0] === 'username') { message = responseMessage(6)}
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
 
 router.post('/addOrgan' , async (req,res) => {
     try{
@@ -90,6 +120,7 @@ router.post('/addOrgan' , async (req,res) => {
         })
 
     }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.details) {
             if(err.details[0].path[0] === 'name') { message = responseMessage(17)}

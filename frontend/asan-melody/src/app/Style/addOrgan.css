@@ -58,7 +58,6 @@ body{
 }
 
 .organ-froms{
-    white-space: nowrap;
     margin-left: 15vw;
     margin-right: 15vw;
     margin-top: 10vh;
@@ -99,9 +98,19 @@ input{
     background: none;
 }
 select{
+    width:  90%;
     border: none;
     outline: none;
     background: none;
+}
+.form option{
+    border: none;
+    outline: none;
+    background: none;
+    padding: 10px;
+    border-radius: 10px;
+    background: #FFF;
+    color: var(--color-primary);
 }
 button {
     margin-top: 5vh;

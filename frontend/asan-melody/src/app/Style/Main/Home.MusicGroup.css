@@ -31,7 +31,7 @@ div .music-group-container .image{
     height: 60vh;
     border-radius: 20px;
     margin-left: 10vw;
-    filter: blur(2px);
+    filter: blur(10px);
 }
 
 div .music-group-container .text{
@@ -43,6 +43,15 @@ div .music-group-container .text{
     color: var(--color-a);
     font-size: 15px;
     font-family: var(--font-default);
+}
+a{
+    color: var(--color-a);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+a:hover{
+    transition: .5s;
+    color: turquoise;
 }
 div .music-group-container .text blockquote {
     border-left: 3px solid var(--color-a);

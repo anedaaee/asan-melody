@@ -109,7 +109,7 @@ export default function Organ() {
     }   
 
     const handleImageError = (event) => {
-        event.target.src = '/alternative.png'; // Replace with the path to your alternative image
+        event.target.src = '/alternative.png'; 
     };
 
     const getImage = async (profile) =>{

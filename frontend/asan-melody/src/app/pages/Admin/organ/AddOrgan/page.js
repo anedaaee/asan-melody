@@ -51,7 +51,6 @@ export default function AddOrgan() {
             }
             e.preventDefault();
             fetch()
-            //console.log(JSON.stringify(profile));
         }catch(err){
             setError('error happend please try again later!')
             if(err.response.status === 400){
@@ -108,7 +107,11 @@ export default function AddOrgan() {
                             <label htmlFor='type-input'>
                                 <MdCheckCircle className='icon'/>
                             </label>
-                            <input type='text'  id='type-input' placeholder='type' value={type} onChange={(e) => setType(e.target.value)} required minLength={3}/>
+                            <select id='type-input' value={type} onChange={(e) => setType(e.target.value)} required>
+                                <option>association</option>
+                                <option>group</option>
+                                <option>academy</option>
+                            </select>
                         </div>
                         <div className='file-upload-container'>
                             <div className='form-file1' id='type'>

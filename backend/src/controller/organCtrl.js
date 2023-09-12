@@ -44,13 +44,17 @@ getId = async(req) => {
 }
 addOrganToDb = async (req , values)=> {
     try{
-        const query = 'INSERT INTO asan_melody.organizations ( id , name, manager, address, phone, `type`, profile_image, background_image, description) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);'
+        let query = 'INSERT INTO asan_melody.organizations ( id , name, manager, address, phone, `type`, profile_image, background_image, description) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);'
 
-        const result = await request(query,[values.id,values.name,values.manager,values.address,values.phone,values.type,values.profile_image,values.background_image,values.description],req)
+        await request(query,[values.id,values.name,values.manager,values.address,values.phone,values.type,values.profile_image,values.background_image,values.description],req)
 
-        return result[0];
+        query = `INSERT INTO asan_melody.user_management (username,organ,permission) VALUES (?,?,'manager');`
 
-    }catch(err){throw err}
+        await request(query,[values.manager,values.id],req)
+
+    }catch(err){
+        console.log(err);
+        throw err}
 }
 
 exports.addOrgan = async (req,values) => { 
@@ -255,6 +259,17 @@ exports.unfollowOrgan = async(req,values) => {
         let query = 'DELETE FROM asan_melody.fallowed_organ WHERE `user` = ? AND organ_id = ? ;'
 
         await request(query , [values.username , values.organ] , req)
+
+    }catch(err){
+        throw err}
+}
+exports.getFollowdOrgan = async(req,values) => {
+    try{
+        let query = 'SELECT organ_id FROM asan_melody.fallowed_organ WHERE `user`=?;'
+
+        let result = await request(query , [values.username] , req)
+
+        return result
 
     }catch(err){throw err}
 }

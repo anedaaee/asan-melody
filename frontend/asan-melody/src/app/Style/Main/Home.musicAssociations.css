@@ -33,7 +33,7 @@ div .music-associations-container .image{
     height: 60vh;
     border-radius: 20px;
     margin-left: 10vw;
-    filter: blur(2px);
+    filter: blur(10px);
 }
 
 div .music-associations-container .text{
