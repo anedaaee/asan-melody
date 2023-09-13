@@ -1,21 +1,25 @@
 'use client'
 import React , {useState , useEffect} from "react"
 import Script from "next/script"
-import {MdMenu , MdSettings , MdClass , MdFollowTheSigns , MdMoney , MdShop} from 'react-icons/md'
+import {MdMenu , MdSettings , MdClass , MdFollowTheSigns , MdMoney , MdShop , MdAdminPanelSettings} from 'react-icons/md'
 import {FaUser} from "react-icons/fa"
 
 import getUserAPI from "@/app/api/getUser"
+import getUserDistinctPermisionAPI from "@/app/api/getUserDistinctPermissionAPI"
+
+//import style from '@/app/Style/musicGroup.css'
+import { resolve } from "styled-jsx/css"
 
 
-
-export default function LoginHeader() {
+export default function LoginHeader(props) {
 
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [isUserNavOpen, setIsUserNavOpen] = useState(false);
     const [navBackground, setNavBackground] = useState("transparent");
     const [userData,setUserdata] = useState({})
     const [loading,setLoading] = useState(true)
-
+    const [permissionsObj , setPermissionObj] = useState({})
+    
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
@@ -43,7 +47,7 @@ export default function LoginHeader() {
 
     const handleScroll = () => {
         if (window.scrollY > 100) {
-        setNavBackground('#460d13');
+        setNavBackground(props.color);
         } else {
         setNavBackground('transparent');
         }
@@ -51,25 +55,36 @@ export default function LoginHeader() {
 
     const handleLogout = () => {
         localStorage.clear();
-        window,location.reload();
+        window,location.href = '/';
     }
 
     useEffect(() => {
         async function fetch(){
 
-            await getUserAPI((result , err) => {
+            await getUserAPI( async (result , err) => {
                 if(err){
                     //handle server Err
                 }else{
-                    localStorage.setItem('userData',JSON.stringify(result.data.body.data))
-                    setUserdata(JSON.parse(localStorage.getItem('userData')))
-                    setLoading(false)
+
+                    try{
+                        localStorage.setItem('userData',JSON.stringify(result.data.body.data))
+                        setUserdata(JSON.parse(localStorage.getItem('userData')))
+                        
+                        let permissions = await getUserDistinctPermisionAPI({username : JSON.parse(localStorage.getItem('userData')).username});
+                        setPermissionObj(permissions)
+
+                        setLoading(false)
+                        
+                    }catch(err){
+                        console.log(err);
+                    }
+
                 }
             })
         }
         
         fetch()
-        console.log(loading);
+        
         window.addEventListener('scroll', handleScroll);
         
         return () => {
@@ -90,12 +105,12 @@ export default function LoginHeader() {
             (
                 <nav className="login-header-nav" style={{ background: navBackground }}>
                     <label htmlFor='user-check' className="user-checkBtn">
-                        <i className="user-menu-icon"><FaUser className="icon-header"></FaUser></i>
+                        <i className="user-menu-icon"><FaUser className="icon-in-header"></FaUser></i>
                     </label>
                     <input type="checkbox" id="user-check" onClick={toggleUserNav}/>
                     
                     <label htmlFor='login-check' className="login-checkBtn">
-                        <i className="login-menu-icon"><MdMenu className="icon-header"></MdMenu></i>
+                        <i className="login-menu-icon"><MdMenu className="icon-in-header"></MdMenu></i>
                     </label>
                     <input type="checkbox" id="login-check" onClick={toggleNav}/>
 
@@ -114,7 +129,7 @@ export default function LoginHeader() {
                         <div className="user-info-content">
                             <a className="user-info-a" href="">
                                 <label className="user-info-label" htmlFor="user-info-p">
-                                    <FaUser className="icon-header"></FaUser>
+                                    <FaUser className="icon-header"/>
                                 </label>
                                 <p className="user-info-p" >{userData.first_name + ' ' + userData.last_name + ' '}</p>
                                 <p className="user-info-p">{'>'}</p>
@@ -126,7 +141,7 @@ export default function LoginHeader() {
                             <div className="user-info-content">
                                 <a className="user-info-a" href="/pages/Admin">
                                     <label className="user-info-label" htmlFor="user-info-p">
-                                        <MdSettings className="icon-header"></MdSettings>
+                                        <MdSettings className="icon-header"/>
                                     </label>
                                     <p className="user-info-p" >manager panel</p>
                                 </a>
@@ -134,8 +149,36 @@ export default function LoginHeader() {
                             ):
                             (<div/>)
                         }
+                        {
+                            (permissionsObj.admin)? 
+                            (
+                            <div className="user-info-content">
+                                <a className="user-info-a" href="/pages/AdminPanel">
+                                    <label className="user-info-label" htmlFor="user-info-p">
+                                        <MdAdminPanelSettings className="icon-header"/>
+                                    </label>
+                                    <p className="user-info-p" >admin panel</p>
+                                </a>
+                            </div>
+                            ):
+                            (<p>{JSON.stringify(permissionsObj)}</p>)
+                        }
+                        {
+                            (permissionsObj.teacher)? 
+                            (
+                            <div className="user-info-content">
+                                <a className="user-info-a" href="/pages/Teacher">
+                                    <label className="user-info-label" htmlFor="user-info-p">
+                                        <MdClass className="icon-header"/>
+                                    </label>
+                                    <p className="user-info-p" >teacher panel</p>
+                                </a>
+                            </div>
+                            ):
+                            (<div/>)
+                        }
                         <div className="user-info-content">
-                            <a className="user-info-a" href="">
+                            <a className="user-info-a" href="/pages/MyClass">
                                 <label className="user-info-label" htmlFor="user-info-p">
                                     <MdClass className="icon-header"/>
                                 </label>
@@ -143,7 +186,7 @@ export default function LoginHeader() {
                             </a>
                         </div>
                         <div className="user-info-content">
-                            <a  className="user-info-a" href="">
+                            <a  className="user-info-a" href="/pages/Favourites">
                                 <label className="user-info-label" htmlFor="user-info-p">
                                     <MdFollowTheSigns className="icon-header"/>
                                 </label>

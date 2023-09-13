@@ -10,7 +10,7 @@ import style from '@/app/Style/AdminPanel.css'
 
 import Header from "@/app/View/Components/reserved/Header"
 import LoginHeader from "@/app/View/Components/reserved/LoginHeader"
-
+import Footer from "@/app/View/Components/Footer"
 
 import getClassesAdminAPI from "@/app/api/getClassesAdminAPI"
 import getPurchaseAdminAPI from "@/app/api/getPurchasesAdminAPI"
@@ -242,10 +242,10 @@ export default function AdminPanel() {
                         
                         (authToken) ?
                         (
-                            <LoginHeader></LoginHeader>
+                            <LoginHeader color={'#000'}></LoginHeader>
                         )
                         :
-                        (<Header></Header>)
+                        (<Header color={'#000'}></Header>)
                     }
                     <section className="admin-panel-page">
                         <div className="selector">
@@ -314,7 +314,7 @@ export default function AdminPanel() {
                                         )
                                     })
                                 }
-                                <a className='add-link' href='/pages/Admin/classes/addClass'>
+                                <a className='add-link' href='/pages/AdminPanel/AddClass'>
                                     <label htmlFor='add'>
                                         <MdAdd className='add-icon'/>
                                     </label>
@@ -369,6 +369,7 @@ export default function AdminPanel() {
                                 }
                             </table>
                         </div>
+                        <Footer></Footer>
                     </section>
                     <section className="post-container" style={post? {display:"block"} : {display:'none'}}>
                         {
@@ -392,6 +393,7 @@ export default function AdminPanel() {
                                 )
                             })
                         }
+                        <Footer></Footer>
                     </section>
                 </React.Fragment>
             )

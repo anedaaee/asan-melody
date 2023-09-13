@@ -8,6 +8,7 @@ import getUsersAPI from '@/app/api/getUsersAPI';
 import organAPI from '@/app/api/organAPI';
 
 import style from '@/app/Style/addUserPermission.css'
+import Footer from '@/app/View/Components/Footer';
 
 export default function addPermission() {
 
@@ -77,7 +78,8 @@ export default function addPermission() {
                             <label htmlFor='username'>
                                 <FaUser className='icon'/>
                             </label>
-                            <select id='username' value={username} onChange={(e) => setUsername(e.target.value)} required>
+                            <select id='username' onChange={(e) => setUsername(e.target.value)} required>
+                                <option value='select-user' disabled selected>Select an User</option>
                                 {
                                     users.map((value,key) => {
                                         return(
@@ -91,7 +93,8 @@ export default function addPermission() {
                             <label htmlFor='permission'>
                                 <FaLock className='icon'/>
                             </label>
-                            <select id='permission' value={permission} onChange={(e) => setPermission(e.target.value)} required >
+                            <select id='permission' onChange={(e) => setPermission(e.target.value)} required >
+                                <option value='select-permission' disabled selected>Select an Permission</option>
                                 {
                                     permissions.map((value,key) => {
                                         return(
@@ -105,7 +108,8 @@ export default function addPermission() {
                             <label htmlFor='organ'>
                                 <FaUserAlt className='icon'/>
                             </label>
-                            <select id='organ' value={organ} onChange={(e) => setOrgan(e.target.value)} required>
+                            <select id='organ' onChange={(e) => setOrgan(e.target.value)} required>
+                                <option value='select-organ' disabled selected>Select an Organ</option>
                                 {
                                     organs.map((value,key) => {
                                         return(

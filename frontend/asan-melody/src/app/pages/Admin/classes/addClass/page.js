@@ -115,7 +115,8 @@ export default function addUser() {
                                                 <label htmlFor='teacher-select'>
                                                     <FaUser className='icon'/>
                                                 </label>
-                                                <select id='teacher-select' value={teacher} onChange={(e) => setTeacher(e.target.value)} required>
+                                                <select id='teacher-select' onChange={(e) => setTeacher(e.target.value)} required>
+                                                    <option value='select-organ' disabled selected>Select Teacher</option>
                                                 {
                                                     teachers.map((teacher) => {
                                                         return(
@@ -161,7 +162,8 @@ export default function addUser() {
                                                 <label htmlFor='organ-select'>
                                                     <MdFactory className='icon'/>
                                                 </label>
-                                                <select id='organ-select' value={organ} onChange={(e) => setOrgan(e.target.value)} required>
+                                                <select id='organ-select' onChange={(e) => setOrgan(e.target.value)} required>
+                                                <option value='select-organ' disabled selected>Select an organ</option>
                                                 {
                                                     organs.map((organ) => {
                                                         return(

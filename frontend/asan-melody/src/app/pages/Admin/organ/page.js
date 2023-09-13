@@ -8,6 +8,7 @@ import style from '../../../Style/organ.css'
 
 import Header from '@/app/View/Components/Admin/Header'
 import Navigation from '@/app/View/Components/Admin/Navigation'
+import Footer from '@/app/View/Components/Footer'
 
 import organAPI from '@/app/api/organAPI'
 import getUserPermisionbyPermissionAndOrganAPI from '@/app/api/getUserPermisionbyPermissionAndOrganAPI'
@@ -296,7 +297,8 @@ export default function Organ() {
                                                                         <input type='text' value={name} className='table-input' onChange={(e) => setName(e.target.value)} minLength={3} required/>
                                                                     </td>
                                                                     <td>
-                                                                        <select name='manager-select'  value={manager} className='table-input' onChange={(e) => setManager(e.target.value)} required>
+                                                                        <select name='manager-select' className='table-input' onChange={(e) => setManager(e.target.value)} required>
+                                                                            <option value='select-manager' disabled selected>Select an Manager</option>
                                                                             {
                                                                                 managers.map((manager) => (
                                                                                     <option selected>{manager.username}</option>
@@ -365,6 +367,7 @@ export default function Organ() {
                                 </table>
                             </div>
                         </div>
+                        <Footer></Footer>
                     </div>
                 )
             }

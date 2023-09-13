@@ -50,13 +50,13 @@ export default function Header() {
           <input type="checkbox" id="check" onClick={toggleNav}/>
           <label className='logo'>Asan Melody</label>
           <ul style={ulStyle}>
-          <li><a href='#Home' onClick={closeNav}>Home</a></li>
-          <li><a href='#music-group' onClick={closeNav}>Music Group's</a></li>
-          <li><a href='#academies' onClick={closeNav}>Academie's</a></li>
-          <li><a href='#music-associations' onClick={closeNav}>Music Association's</a></li>
-          <li><a href='#concert' onClick={closeNav}>concert</a></li>
-          <li><a href='#about' onClick={closeNav}>About</a></li>
-          <li><a href="#contact" onClick={closeNav}>Contact us</a></li>
+          <li><a href='/#Home' onClick={closeNav}>Home</a></li>
+          <li><a href='/#music-group' onClick={closeNav}>Music Group's</a></li>
+          <li><a href='/#academies' onClick={closeNav}>Academie's</a></li>
+          <li><a href='/#music-associations' onClick={closeNav}>Music Association's</a></li>
+          <li><a href='/#concert' onClick={closeNav}>concert</a></li>
+          <li><a href='/#about' onClick={closeNav}>About</a></li>
+          <li><a href="/#contact" onClick={closeNav}>Contact us</a></li>
           </ul>
       </nav>
     </header>

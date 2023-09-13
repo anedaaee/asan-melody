@@ -123,7 +123,16 @@ export default function MusicAcademies(){
 
         return renderedElements;
     }
-
+    const handleOrganClick = (id) => {
+        try{
+            window.location.href = `/pages/organ?id=${id}`
+        }catch(err){
+            setError('error happend please try again later!')
+            if(err.response.status === 400){
+                setError(err.response.data.metadata.messageEng)
+            }   
+        }
+    }
     const renderElement = () => {
 
         const renderedElements = [];
@@ -134,7 +143,7 @@ export default function MusicAcademies(){
                     {
                         academy[i]?
                         (
-                            <div className='group-div' id={i}>
+                            <div className='group-div' id={i} onClick={() => handleOrganClick(academy[i].id)}>
                                     {
                                         (authToken)?
                                         (
@@ -160,7 +169,7 @@ export default function MusicAcademies(){
                     {
                         academy[i+1]?
                         (
-                            <div className='group-div' id={i+1}>  
+                            <div className='group-div' id={i+1} onClick={() => handleOrganClick(academy[i+1].id)}>  
                                     {
                                         (authToken)?
                                         (
@@ -185,7 +194,7 @@ export default function MusicAcademies(){
                     {
                         academy[i+2]?
                         (
-                            <div className='group-div' id={i+2}>  
+                            <div className='group-div' id={i+2} onClick={() => handleOrganClick(academy[i+2].id)}>  
                                     {
                                         (authToken)?
                                         (
@@ -210,7 +219,7 @@ export default function MusicAcademies(){
                     {
                         academy[i+3]?
                         (
-                            <div className='group-div' id={i+3}>
+                            <div className='group-div' id={i+3} onClick={() => handleOrganClick(academy[i+3].id)}>
                                     {
                                         (authToken)?
                                         (
@@ -250,10 +259,10 @@ export default function MusicAcademies(){
                         {
                             (authToken) ?
                             (
-                                <LoginHeader></LoginHeader>
+                                <LoginHeader color={'#000'}></LoginHeader>
                             )
                             :
-                            (<Header></Header>)
+                            (<Header color={'#000'}></Header>)
                         }
                         <section className='hero'>
                             <img className='hero-image' src='/music-group-page.jpg' alt='music-group-page'/>

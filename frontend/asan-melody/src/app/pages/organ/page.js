@@ -7,6 +7,7 @@ import getOrganById from "@/app/api/getOrganByIdAPI"
 import getUserPublicAPI from "@/app/api/getUserPublicAPI"
 import getClassesByOrganAPI from "@/app/api/getClassesByOrganAPI"
 import reserveAPI from "@/app/api/reserveAPI"
+import getPostStudentAPI from "@/app/api/getPostsByOrganStudent"
 
 import { IMG_KEY } from '../../../../config'
 
@@ -21,6 +22,9 @@ export default function Organ() {
     const [manager,setManager] = useState({})
     const [classes,setClasses] = useState([])
     const [userData,setUserData] = useState({})
+    const [posts,setPosts] = useState([])
+    const [isPost,setIsPost] = useState(true)
+    const [isClass,setIsClass] = useState(false)
 
     useEffect(() => {
 
@@ -44,6 +48,10 @@ export default function Organ() {
                 let classes = await getClassesByOrganAPI(params.get('id'))
 
                 setClasses(classes)
+
+                let posts = await getPostStudentAPI(params.get('id'))
+
+                setPosts(posts)
 
                 setUserData(JSON.parse(localStorage.getItem('userData')))
 
@@ -71,6 +79,23 @@ export default function Organ() {
         try{
             await reserveAPI({user:userData.username , class : class_id})
             window.location.href = '/pages/Reservation'
+        }catch(err){
+            setError('error happend please try again later!')
+            if(err.response.status === 400){
+                setError(err.response.data.metadata.messageEng)
+            }   
+        }
+    }
+
+    const handleLocation = async (where) => {
+        try{
+            if(where === 1){
+                setIsPost(true)
+                setIsClass(false)
+            }else if(where === 2){
+                setIsPost(false)
+                setIsClass(true)
+            }
         }catch(err){
             setError('error happend please try again later!')
             if(err.response.status === 400){
@@ -112,13 +137,13 @@ export default function Organ() {
                         </div>
                         <div className="selector">
                             <div className="icon-container">
-                                <MdGridOn className="icon"></MdGridOn>
+                                <MdGridOn className="icon" style={isPost ? {color:'#757070'} : {color:'#e9d4c1'}} onClick={() => handleLocation(1)}></MdGridOn>
                             </div>
                             <div className="icon-container">
-                                <MdClass className="icon"></MdClass>
+                                <MdClass className="icon" style={isClass ? {color:'#757070'} : {color:'#e9d4c1'}} onClick={() => handleLocation(2)}></MdClass>
                             </div>
                         </div>
-                        <div className="classes-container">
+                        <div className="classes-container" style={isClass ? {display:'block'}:{display:'none'}}>
                             {
                                 classes.map((val,key)=>{
                                     return (
@@ -139,6 +164,25 @@ export default function Organ() {
                                     )
                                 })
                             }
+                        </div>
+                        <div className="post-container" style={isPost ? {display:'block'}:{display:'none'}}>
+                        {
+                            posts.map((post,key) => {
+                                let date =new Date(post.date)
+                                return(
+                                    <div className="post-item">
+                                        <img className='post-image' src={`${IMG_KEY}${post.file}`}  alt={post.title + 'image'} onError={(e) => handleImageError(e)}/>
+                                        <div className="post-info">
+                                            <h1>{post.title}</h1>
+                                            <div className="post-description">
+                                                <h4>{post.description}</h4>
+                                            </div>
+                                            <p>{date.getFullYear()}/{date.getMonth()}/{date.getDay()}</p>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
                         </div>
                     </div>
                 )

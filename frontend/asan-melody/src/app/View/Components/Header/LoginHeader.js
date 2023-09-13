@@ -117,19 +117,19 @@ export default function LoginHeader() {
                     <label className='login-logo'>Asan Melody</label>
 
                     <ul className="links" style={ulStyle}>
-                        <li><a href='#Home' onClick={closeNav}>Home</a></li>
-                        <li><a href='#music-group' onClick={closeNav}>Music Group's</a></li>
-                        <li><a href='#academies' onClick={closeNav}>Academie's</a></li>
-                        <li><a href='#music-associations' onClick={closeNav}>Music Association's</a></li>
-                        <li><a href='#concert' onClick={closeNav}>concert</a></li>
-                        <li><a href='#about' onClick={closeNav}>About</a></li>
-                        <li><a href="#contact" onClick={closeNav}>Contact us</a></li>
+                        <li><a href='/#Home' onClick={closeNav}>Home</a></li>
+                        <li><a href='/#music-group' onClick={closeNav}>Music Group's</a></li>
+                        <li><a href='/#academies' onClick={closeNav}>Academie's</a></li>
+                        <li><a href='/#music-associations' onClick={closeNav}>Music Association's</a></li>
+                        <li><a href='/#concert' onClick={closeNav}>concert</a></li>
+                        <li><a href='/#about' onClick={closeNav}>About</a></li>
+                        <li><a href="/#contact" onClick={closeNav}>Contact us</a></li>
                     </ul>
                     <div className="user-info" style={userDIvStyle}>
                         <div className="user-info-content">
                             <a className="user-info-a" href="">
                                 <label className="user-info-label" htmlFor="user-info-p">
-                                    <FaUser color="#e9d4c1"/>
+                                    <FaUser className="icon-header"/>
                                 </label>
                                 <p className="user-info-p" >{userData.first_name + ' ' + userData.last_name + ' '}</p>
                                 <p className="user-info-p">{'>'}</p>
@@ -141,7 +141,7 @@ export default function LoginHeader() {
                             <div className="user-info-content">
                                 <a className="user-info-a" href="/pages/Admin">
                                     <label className="user-info-label" htmlFor="user-info-p">
-                                        <MdSettings color="#e9d4c1"/>
+                                        <MdSettings className="icon-header"/>
                                     </label>
                                     <p className="user-info-p" >manager panel</p>
                                 </a>
@@ -155,7 +155,7 @@ export default function LoginHeader() {
                             <div className="user-info-content">
                                 <a className="user-info-a" href="/pages/AdminPanel">
                                     <label className="user-info-label" htmlFor="user-info-p">
-                                        <MdAdminPanelSettings color="#e9d4c1"/>
+                                        <MdAdminPanelSettings className="icon-header"/>
                                     </label>
                                     <p className="user-info-p" >admin panel</p>
                                 </a>
@@ -169,7 +169,7 @@ export default function LoginHeader() {
                             <div className="user-info-content">
                                 <a className="user-info-a" href="/pages/Teacher">
                                     <label className="user-info-label" htmlFor="user-info-p">
-                                        <MdClass color="#e9d4c1"/>
+                                        <MdClass className="icon-header"/>
                                     </label>
                                     <p className="user-info-p" >teacher panel</p>
                                 </a>
@@ -178,17 +178,17 @@ export default function LoginHeader() {
                             (<div/>)
                         }
                         <div className="user-info-content">
-                            <a className="user-info-a" href="">
+                            <a className="user-info-a" href="/pages/MyClass">
                                 <label className="user-info-label" htmlFor="user-info-p">
-                                    <MdClass color="#e9d4c1"/>
+                                    <MdClass className="icon-header"/>
                                 </label>
                                 <p className="user-info-p" >my classes</p>
                             </a>
                         </div>
                         <div className="user-info-content">
-                            <a  className="user-info-a" href="">
+                            <a  className="user-info-a" href="/pages/Favourites">
                                 <label className="user-info-label" htmlFor="user-info-p">
-                                    <MdFollowTheSigns color="#e9d4c1"/>
+                                    <MdFollowTheSigns className="icon-header"/>
                                 </label>
                                 <p className="user-info-p" >my favourite's</p>
                             </a>

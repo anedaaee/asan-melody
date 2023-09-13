@@ -15,6 +15,7 @@ import refactoreUserAPI from '@/app/api/refactorUserAPI'
 import getAllUserPermissionsAPI from '@/app/api/getAllUserPermissionsAPI'
 import organAPI from '@/app/api/organAPI'
 import deletePermissionAPI from '@/app/api/deletePermissionAPI'
+import Footer from '@/app/View/Components/Footer'
 
 const COLUMNS = [
     {
@@ -325,7 +326,7 @@ export default function Admin() {
                                                                         <td>
                                                                             <select name='role-select' className='table-input' onChange={(e) => setRole(e.target.value)} required>
                                                                                 <option selected>manager</option>
-                                                                                <option selected>user</option>
+                                                                                <option>user</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -363,6 +364,7 @@ export default function Admin() {
                                 }
                             </div>
                         </div>
+                        <Footer></Footer>
                     </div>
                 )
             }

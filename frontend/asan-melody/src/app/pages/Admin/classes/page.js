@@ -8,7 +8,7 @@ import style from '@/app/Style/classes.css'
 
 import Header from '@/app/View/Components/Admin/Header'
 import Navigation from '@/app/View/Components/Admin/Navigation'
-
+import Footer from '@/app/View/Components/Footer'
 
 
 import { IMG_KEY } from '../../../../../config'
@@ -260,6 +260,7 @@ export default function Organ() {
                                 </table>
                             </div>
                         </div>
+                        <Footer></Footer>
                     </div>
                 )
             }

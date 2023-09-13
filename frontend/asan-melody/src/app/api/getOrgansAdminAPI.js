@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import {API_KEY} from '../../../config'
 
-const getOrgansAdminAPI = async (user) => {
+const getOrgansAdminAPI = async () => {
     try{
         let url = `${API_KEY}/admin/getOrgans`;
     

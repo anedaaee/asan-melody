@@ -123,6 +123,17 @@ export default function MusicAssociations(){
         return renderedElements;
     }
 
+    const handleOrganClick = (id) => {
+        try{
+            window.location.href = `/pages/organ?id=${id}`
+        }catch(err){
+            setError('error happend please try again later!')
+            if(err.response.status === 400){
+                setError(err.response.data.metadata.messageEng)
+            }   
+        }
+    }
+    
     const renderElement = () => {
 
         const renderedElements = [];
@@ -133,7 +144,7 @@ export default function MusicAssociations(){
                     {
                         assosiation[i]?
                         (
-                            <div className='group-div' id={i}>
+                            <div className='group-div' id={i} onClick={() => handleOrganClick(assosiation[i].id)}>
                                     {
                                         (authToken)?
                                         (
@@ -159,7 +170,7 @@ export default function MusicAssociations(){
                     {
                         assosiation[i+1]?
                         (
-                            <div className='group-div' id={i+1}>  
+                            <div className='group-div' id={i+1}  onClick={() => handleOrganClick(assosiation[i+1].id)}>  
                                     {
                                         (authToken)?
                                         (
@@ -184,7 +195,7 @@ export default function MusicAssociations(){
                     {
                         assosiation[i+2]?
                         (
-                            <div className='group-div' id={i+2}>  
+                            <div className='group-div' id={i+2}  onClick={() => handleOrganClick(assosiation[i+2].id)}>  
                                     {
                                         (authToken)?
                                         (
@@ -209,7 +220,7 @@ export default function MusicAssociations(){
                     {
                         assosiation[i+3]?
                         (
-                            <div className='group-div' id={i+3}>
+                            <div className='group-div' id={i+3}  onClick={() => handleOrganClick(assosiation[i+3].id)}>
                                     {
                                         (authToken)?
                                         (
@@ -249,10 +260,10 @@ export default function MusicAssociations(){
                         {
                             (authToken) ?
                             (
-                                <LoginHeader></LoginHeader>
+                                <LoginHeader color={'#0f1e35'}></LoginHeader>
                             )
                             :
-                            (<Header></Header>)
+                            (<Header color={'#0f1e35'}></Header>)
                         }
                         <section className='hero'>
                             <img className='hero-image' src='/music-group-page.jpg' alt='music-group-page'/>

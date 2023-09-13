@@ -9,6 +9,7 @@ import style from '@/app/Style/reservation.css'
 
 import Header from "@/app/View/Components/reserved/Header"
 import LoginHeader from "@/app/View/Components/reserved/LoginHeader"
+import Footer from "@/app/View/Components/Footer"
 
 import getClassesTeacherAPI from "@/app/api/getClassesTeacherAPI"
 
@@ -73,10 +74,10 @@ export default function Teacher() {
                     {
                         (authToken) ?
                         (
-                            <LoginHeader></LoginHeader>
+                            <LoginHeader color={'#000'}></LoginHeader>
                         )
                         :
-                        (<Header></Header>)
+                        (<Header color={'#000'}></Header>)
                     }
                     <div className="reserved-container">
                         {
@@ -120,6 +121,7 @@ export default function Teacher() {
                         }
                     </div>
                 </React.Fragment>
+
             )
         }
     </div>

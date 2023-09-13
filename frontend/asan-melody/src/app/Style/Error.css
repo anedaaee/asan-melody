@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html{
+    padding: 0;
+    margin: 0px;
+    background-color: #755fa8;
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+}
+.error-page-container{
+    width: 90vw;
+    height: fit-content;
+    background: #2c2244;
+    padding: 40px;
+    color: #b28303;
+    margin-top: 30vh;
+}

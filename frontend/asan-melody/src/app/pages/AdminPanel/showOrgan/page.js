@@ -3,14 +3,14 @@ import React , {useState , useEffect} from "react"
 
 import { IMG_KEY } from '../../../../../config'
 
-import { FaUser } from "react-icons/fa"
-import { MdCheck ,  MdClose , MdGridOn , MdSettings , MdAdd } from "react-icons/md"
+import {MdClose} from "react-icons/md"
 
 import style from '@/app/Style/AdminPanel.css'
 
 import getPostAdminAPI from "@/app/api/getPostAdminAPI"
 import deletePostAdminAPI from "@/app/api/deletePostAdminAPI"
 import refactorePostAdminAPI from "@/app/api/refactorePostAminAPI"
+import addPostAdminAPI from "@/app/api/addPostAdminAPI"
 
 export default function showOrgan() {
     const [loading,setLoading] = useState(true)
@@ -20,6 +20,10 @@ export default function showOrgan() {
     const [posts , setPosts] = useState([])
     const [organ,setOrgan] = useState({})
     const [id,setId] = useState('')
+    const [isAddPost,setIsAddPost] = useState(false)
+    const [title,setTitle] = useState('')
+    const [description,setDescription] = useState('')
+    const [file,setFile] = useState('')
 
     useEffect(() => {
         try{
@@ -83,6 +87,28 @@ export default function showOrgan() {
         }
     } 
 
+    const addNew = async () => {
+        try{
+            setIsAddPost(!isAddPost)
+        }catch(err){
+            setError('error happend please try again later!')
+            if(err.response.status === 400){
+                setError(err.response.data.metadata.messageEng)
+            }
+        }
+    }
+
+    const addNewPost = async () => {
+        try{    
+            await addPostAdminAPI({file:file,organ:id,title:title,description:description})
+            window.location.reload()
+        }catch(err){
+            setError('error happend please try again later!')
+            if(err.response.status === 400){
+                setError(err.response.data.metadata.messageEng)
+            }
+        }
+    }
     return(
         <div className='purchase-page'>
         {
@@ -108,35 +134,55 @@ export default function showOrgan() {
                     </header>
 
                     <section className="post-container">
-                    {
-                        posts.map((post,key) => {
-                            let date =new Date(post.date)
-
-                            return(
-                                <div className="post-item">
-                                    <img className='post-image' src={`${IMG_KEY}${post.file}`}  alt={post.title + 'image'} onError={(e) => handleImageError(e)}/>
-                                    <div className="post-info">
-                                        <h1>{post.title}</h1>
-                                        <div className="post-description">
-                                            <h4>{post.description}</h4>
+                        <React.Fragment>
+                        <div className="add-post">
+                            <button className="add-post-button" onClick={addNew}>ADD NEW</button>
+                        </div>
+                        {
+                            posts.map((post,key) => {
+                                let date =new Date(post.date)
+    
+                                return(
+                                    <div className="post-item">
+                                        <img className='post-image' src={`${IMG_KEY}${post.file}`}  alt={post.title + 'image'} onError={(e) => handleImageError(e)}/>
+                                        <div className="post-info">
+                                            <h1>{post.title}</h1>
+                                            <div className="post-description">
+                                                <h4>{post.description}</h4>
+                                            </div>
+                                            <div className="button-container">
+                                                {
+                                                    (post.isActive === 1)?
+                                                    (
+                                                        <button className="post-button" onClick={() => deletePost(post.id)}>DELETE</button>
+                                                    ):
+                                                    (
+                                                        <button className="post-button" onClick={() => refactorePost(post.id)}>REFACTORE</button>
+                                                    )
+                                                }
+                                            </div>
+                                            <p>{date.getFullYear()}/{date.getMonth()}/{date.getDay()}</p>
                                         </div>
-                                        <div className="button-container">
-                                            {
-                                                (post.isActive === 1)?
-                                                (
-                                                    <button className="post-button" onClick={() => deletePost(post.id)}>DELETE</button>
-                                                ):
-                                                (
-                                                    <button className="post-button" onClick={() => refactorePost(post.id)}>REFACTORE</button>
-                                                )
-                                            }
-                                        </div>
-                                        <p>{date.getFullYear()}/{date.getMonth()}/{date.getDay()}</p>
                                     </div>
+                                )
+                            })
+                        }
+                        </React.Fragment>
+                    </section>
+                    <section className="add-post-section" style={isAddPost?{display:"flex"}:{display:"none"}}>
+                        <MdClose onClick={addNew} className="close-icon-add-post"/>
+                        <h1>ADD NEW POST</h1>
+                        <form>
+                            <input value={title} type="text" className="text-input" onChange={(e) => setTitle(e.target.value)} required/>
+                            <textarea value={description} className="text-area-input" onChange={(e) => setDescription(e.target.value)} required/>
+                            <label className="add-image-label" htmlFor="post-file">
+                                <div>
+                                    ADD IMAGE FOR POST
                                 </div>
-                            )
-                        })
-                    }
+                            </label>
+                            <input  type="file" className="file-input" id="post-file" onChange={(e) => setFile(e.target.files[0])} required/>
+                            <button className="add-post-button-2" onClick={addNewPost}>ADD NEW</button>
+                        </form>
                     </section>
                 </React.Fragment>
             )

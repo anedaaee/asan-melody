@@ -128,10 +128,10 @@ export default function Classes() {
                     {
                         (authToken) ?
                         (
-                            <LoginHeader></LoginHeader>
+                            <LoginHeader color={'#000'}></LoginHeader>
                         )
                         :
-                        (<Header></Header>)
+                        (<Header color={'#000'}></Header>)
                     }
                     <div className="reserved-container">
                         {

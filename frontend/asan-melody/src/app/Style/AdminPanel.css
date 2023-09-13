@@ -27,8 +27,8 @@ html{
     background-repeat: no-repeat;
     object-fit: cover;
 }
-
 header.main-header{
+    z-index: 10;
     font-family: var(--font-primary);
 }
 
@@ -114,6 +114,7 @@ nav.header-nav ul li a:hover{
 }
 
 header.login-header{
+    z-index: 10;
     font-family: var(--font-primary);
 }
 
@@ -206,10 +207,13 @@ nav.login-header-nav ul.links li a:hover{
     background-color: var(--color-secondary);
     border: 1px solid var(--color-a);
     border-radius: 10px;
-    width: 250px;
-    height: 350px;
+    min-width: 250px;
+    min-height: 350px;
+    max-width: fit-content;
+    max-height: fit-content;
     position: fixed;
     margin-left: 40px;  
+    padding: 10px;
 }
 .user-info-a{
     text-decoration: none;
@@ -233,9 +237,9 @@ nav.login-header-nav ul.links li a:hover{
     color: var(--color-secondary);
     font-family: var(--font-default);
     border-radius: 4px;
+    padding: 10px;
 }
 .logout-box:hover{
-    transition: .5s;
     background: var(--color-secondary);
     width: 70px;
     height: 30px;
@@ -246,6 +250,21 @@ nav.login-header-nav ul.links li a:hover{
     font-family: var(--font-default);
     border-radius: 4px;
     border: 2px solid var(--color-a);
+}
+.icon-header{
+    color: var(--color-a);
+}
+.icon-header:hover{
+    color: darkgrey;
+}
+.user-info-p:hover{
+    color: darkgrey;
+}
+.icon-in-header{
+    color: var(--color-a);
+}
+.icon-in-header:hover{
+    color: darkgrey;
 }
 @media (max-width : 1495px){
     label.login-logo{
@@ -274,8 +293,7 @@ nav.login-header-nav ul.links li a:hover{
 }
 
 .selector{
-    position: absolute;
-    z-index: 10;
+    position:fixed;
     width: 99%;
     height: 5vh;
     background-color: var(--color-secondary);
@@ -433,6 +451,7 @@ nav.login-header-nav ul.links li a:hover{
 }
 
 .setting-container , .post-container{
+    z-index: -1;
     position: absolute;
     margin-top: 20vh;
     min-width: 100%;
@@ -624,6 +643,8 @@ nav.login-header-nav ul.links li a:hover{
     padding: 10px;
     margin-left: auto;
     margin-right: auto;
+    max-width: fit-content;
+    max-height: fit-content;
 }
 .post-button:hover{
     background: var(--color-a);
@@ -639,4 +660,162 @@ nav.login-header-nav ul.links li a:hover{
     .post-item{
         width: 80vw;
     }
+}
+
+.add-post{
+    width: 100%;
+    display: flex;
+}
+.add-post-button{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: var(--color-secondary);
+    color: var(--color-a);
+}
+.add-post-button:hover{
+    background: var(--color-a);
+    color: var(--color-default);
+    transition: all .5s;
+}
+.add-post-section{
+    position: absolute;
+    flex-direction: column;
+    display: block;
+    background: var(--color-secondary);
+    min-width: 60vw;
+    min-height: 60vh;
+    max-width: fit-content;
+    max-height: fit-content;
+    margin-left: 20vw;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--color-a);
+    z-index: 100;
+    padding: 10px;
+}
+.add-post-section form{
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width:1000px) {
+    .add-post-section{
+        min-width: 80vw;
+        margin-left: 10vw;
+    }
+}
+.add-post-section h1{
+    text-align: center;
+    color: var(--color-a);
+    margin-top: 5vh;
+}
+.text-input{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: var(--color-default);
+    color: var(--color-a);
+}
+.text-area-input{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    height: 30vh;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: var(--color-default);
+    color: var(--color-a);
+}
+.file-input{
+    display: none;
+}
+.add-image-label{
+    text-align: center;
+    color: var(--color-a);
+    background-color: var(--color-default);
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.add-image-label:hover{
+    color: var(--color-default);
+    background-color: var(--color-a);
+
+}
+.close-icon-add-post{
+    color: var(--color-a);
+    background-color: var(--color-default);
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 4px;
+}
+.close-icon-add-post:hover{
+    color: var(--color-default);
+    background-color: var(--color-a);
+}
+.add-post-button-2{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    background: var(--color-default);
+    color: var(--color-a);
+}
+.add-post-button-2:hover{
+    background: var(--color-a);
+    color: var(--color-default);
+    transition: all .5s;
+}
+.error-message-page-container{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+}
+.error-message-container{
+    min-width: 40vw;
+    min-height: 10vh;
+    max-width: fit-content;
+    max-height: fit-content;
+    background-color: #a03535;
+    margin-left: 10vw;
+    margin-top : 10vh;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+}
+.error-close-icon{
+    font-size: 20px;
+}
+.error-close-icon-container{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    margin: auto;
+}
+.error-close-icon-container:hover{
+    background: #000;
+}
+.error-icon-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }

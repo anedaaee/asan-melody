@@ -9,6 +9,7 @@ import MusicGroup from './View/Components/Home.musicGroup'
 import Academies from './View/Components/Home.academies'
 import MusicAssociations from './View/Components/Home.associations'
 import Concert from './View/Components/Home.comcert'
+import Footer from './View/Components/Footer'
 
 import style from './Style/Main/Home.MusicGroup.css'
 
@@ -44,6 +45,7 @@ export default function Page() {
         <Academies></Academies>
         <MusicAssociations></MusicAssociations>
         <Concert></Concert>
+        <Footer></Footer>
       </main>
     </div>
   )

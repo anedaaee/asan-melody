@@ -104,7 +104,7 @@ exports.getClasses = async (req) => {
 }
 exports.getClassById = async (req,values) => {
     try{
-        const query = `SELECT * FROM asan_melody.classes WHERE class_id=? AND isActive=1;`
+        const query = `SELECT * FROM asan_melody.classes WHERE class_id=?`
 
         const result = await request(query,[values.classId],req)
 

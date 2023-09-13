@@ -3,7 +3,7 @@ import React , {useState , useEffect} from "react"
 import Script from "next/script"
 import {MdMenu} from 'react-icons/md'
 
-export default function Header() {
+export default function Header(props) {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,7 +23,7 @@ export default function Header() {
 
   const handleScroll = () => {
     if (window.scrollY > 100) {
-      setNavBackground('#460d13');
+      setNavBackground(props.color);
       setIsScrolled(true);
     } else {
       setNavBackground('transparent');

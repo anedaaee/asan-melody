@@ -43,8 +43,10 @@ export default function Reservation() {
             fetch()
         }catch(err){
             setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
+            if(err.response.status){
+                if(err.response.status === 400){
+                    setError(err.response.data.metadata.messageEng)
+                }
             }
         }
     } , [])

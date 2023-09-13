@@ -259,10 +259,10 @@ export default function MusicGroup(){
                         {
                             (authToken) ?
                             (
-                                <LoginHeader></LoginHeader>
+                                <LoginHeader color={'#460d13'}></LoginHeader>
                             )
                             :
-                            (<Header></Header>)
+                            (<Header color={'#460d13'}></Header>)
                         }
                         <section className='hero'>
                             <img className='hero-image' src='/music-group-page.jpg' alt='music-group-page'/>

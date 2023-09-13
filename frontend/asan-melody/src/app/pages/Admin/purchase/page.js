@@ -7,6 +7,7 @@ import style from '@/app/Style/purchase.css'
 
 import Header from '@/app/View/Components/Admin/Header'
 import Navigation from '@/app/View/Components/Admin/Navigation'
+import Footer from '@/app/View/Components/Footer'
 
 import getPurchaseAPI from '@/app/api/getPurchaseAPI'
 import admitAPI from '@/app/api/admitAPI'
@@ -178,6 +179,7 @@ export default function Purchase() {
                                 </table>
                             </div>
                         </div>
+                        <Footer></Footer>
                     </div>
                 )
             }

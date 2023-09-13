@@ -25,7 +25,9 @@ const getPurchaseByUserAPI = async (user) => {
         let class_info,organ
 
         for(let i = 0 ; i < purchases.length ; i++){
+            console.log(purchases[i].class);
             class_info = await getClassesByIdAPI(purchases[i].class)
+            console.log(class_info);
             purchases[i].class_info = class_info 
             organ = await getOrganById(class_info.organ)
             purchases[i].organ_info = organ

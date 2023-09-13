@@ -27,7 +27,7 @@ exports.getAssociations = async (req)=> {
 
 exports.getAcademies = async (req)=> {
     try{
-        const query = `SELECT * FROM organizations WHERE type = 'academy AND isActive=1';`
+        const query = `SELECT * FROM organizations WHERE type = 'academy' AND isActive=1;`
 
         const result = await request(query,[],req)
 

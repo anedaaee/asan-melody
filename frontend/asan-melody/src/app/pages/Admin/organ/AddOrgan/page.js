@@ -75,7 +75,8 @@ export default function AddOrgan() {
                             <label htmlFor='manager-input'>
                                 <FaUser className='icon'/>
                             </label>
-                            <select name='manager-input' id='manager-input' value={manager} onChange={(e) => setManager(e.target.value)} required minLength={3}>
+                            <select name='manager-input' id='manager-input' onChange={(e) => setManager(e.target.value)} required minLength={3}>
+                                <option value='select-manager' disabled selected>Select an Manager</option>
                                 {
                                     managers.map((manager) => {
                                         return (
@@ -107,8 +108,8 @@ export default function AddOrgan() {
                             <label htmlFor='type-input'>
                                 <MdCheckCircle className='icon'/>
                             </label>
-                            <select id='type-input' value={type} onChange={(e) => setType(e.target.value)} required>
-                                <option>association</option>
+                            <select id='type-input' onChange={(e) => setType(e.target.value)} required>
+                                <option selected>association</option>
                                 <option>group</option>
                                 <option>academy</option>
                             </select>

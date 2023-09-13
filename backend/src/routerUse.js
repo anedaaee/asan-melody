@@ -12,6 +12,7 @@ const downloadRouter = require('./routers/download')
 const publicRouter = require('./routers/public')
 const teacherRouter = require('./routers/teacher')
 const adminRouter = require('./routers/admin')
+const studentRouter = require('./routers/student')
 
 exports.app_use = (app) => {
     app.use('/api/auth' , authRouter)
@@ -24,5 +25,6 @@ exports.app_use = (app) => {
     app.use('/api/download' ,passport.authenticate('jwt', { session: false }),downloadRouter)
     app.use('/api/teacher' ,passport.authenticate('jwt', { session: false }),teacherRouter)
     app.use('/api/admin' ,passport.authenticate('jwt', { session: false }),adminRouter)
+    app.use('/api/student' ,passport.authenticate('jwt', { session: false }),studentRouter)
     app.use('/api/public' ,publicRouter)
 }

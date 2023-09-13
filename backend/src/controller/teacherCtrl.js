@@ -6,7 +6,7 @@ const { v4:uuidv4} =  require('uuid')
 
 exports.getClasses = async (req) => {
     try{
-        let query = 'SELECT * FROM asan_melody.classes WHERE teacher = ? AND class_id IN (SELECT class FROM asan_melody.purchase WHERE admit = 1);'
+        let query = 'SELECT * FROM asan_melody.classes WHERE isActive=0 AND teacher = ? AND class_id IN (SELECT class FROM asan_melody.purchase WHERE admit = 1);'
 
         let class_infos = await request(query,[req.user.username],req)
 
