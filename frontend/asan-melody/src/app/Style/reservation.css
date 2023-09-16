@@ -1,7 +1,11 @@
+@font-face {
+    font-family: 'IranNastaliq';
+    src: url('../asset/Fonts/IranNastaliq.ttf');
+}
 :root {
-    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-primary: Arial, Helvetica, sans-serif;
-    --font-secondary: "Raleway", sans-serif; 
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji","IranNastaliq";
+    --font-primary: "Montserrat", sans-serif ,"IranNastaliq";
+    --font-secondary: "Raleway", sans-serif,"IranNastaliq"; 
 }
   
 /* Colors */
@@ -65,7 +69,7 @@ nav.header-nav ul li a{
 }
 nav.header-nav ul li a:hover{
     color : var(--color-secondary);
-    transition: .5s;
+    transition: all .5s;
 }
 .checkBtn{
     font-size: 30px;
@@ -107,6 +111,7 @@ nav.header-nav ul li a:hover{
         background-color: var(--color-primary);
         border: 0px;
         border-radius: 5px;
+        transition: all .5s;
     }
     #check:checked ~ ul{
         left: 0%;
@@ -163,6 +168,7 @@ nav.login-header-nav ul.links li a{
 nav.login-header-nav ul.links li a:hover{
     color : var(--color-secondary);
     transition: .5s;
+    transition: all .5s;
 }
 .login-checkBtn{
     font-size: 30px;
@@ -249,21 +255,25 @@ nav.login-header-nav ul.links li a:hover{
     font-family: var(--font-default);
     border-radius: 4px;
     border: 2px solid var(--color-a);
+    transition: all .5s;
 }
 .icon-header{
     color: var(--color-a);
 }
 .icon-header:hover{
     color: darkgrey;
+    transition: all .5s;
 }
 .user-info-p:hover{
     color: darkgrey;
+    transition: all .5s;
 }
 .icon-in-header{
     color: var(--color-a);
 }
 .icon-in-header:hover{
     color: darkgrey;
+    transition: all .5s;
 }
 @media (max-width : 1495px){
     label.login-logo{
@@ -278,6 +288,7 @@ nav.login-header-nav ul.links li a:hover{
         background-color: var(--color-primary);
         border: 0px;
         border-radius: 5px;
+        transition: all .5s;
     }
     .login-checkBtn{
         font-size: 25px;
@@ -351,11 +362,13 @@ nav.login-header-nav ul.links li a:hover{
     background: var(--color-secondary);
     border-radius: 10px;
     color: var(--color-a);
+    transition: all .5s;
 }
 .reserve-item-2-button label:hover{
     background: var(--color-secondary);
     border-radius: 10px;
     color: var(--color-a);
+    transition: all .5s;
 }
 #receipt{
     display: none;
@@ -435,6 +448,7 @@ nav.login-header-nav ul.links li a:hover{
 }
 .reserve-item-icon #delete-icon:hover {
     color: var(--color-default);
+    transition: all .5s;
 }
 
 .add-session{
@@ -452,6 +466,7 @@ nav.login-header-nav ul.links li a:hover{
     border: none;
     border-radius: 5px;
     margin-left: 45%;
+    transition: all .5s;
 }
 .add-session-2{
     padding: 10px;
@@ -464,6 +479,7 @@ nav.login-header-nav ul.links li a:hover{
 .add-session-2:hover{
     color: var(--color-primary);
     background-color: var(--color-a);
+    transition: all .5s;
 }
 .add-session-container{
     display: none;
@@ -532,6 +548,7 @@ nav.login-header-nav ul.links li a:hover{
 }
 .error-close-icon-container:hover{
     background: #000;
+    transition: all .5s;
 }
 .error-icon-container{
     display: flex;

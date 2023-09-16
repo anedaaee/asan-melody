@@ -1,7 +1,8 @@
 'use client'
 import React , {useState , useEffect} from 'react'
 
-import { FaPlus , FaMinus} from 'react-icons/fa'
+import { FaPlus , FaMinus , FaUser} from 'react-icons/fa'
+import { MdHome , MdClose ,MdGrid3X3 , MdClass} from 'react-icons/md'
 
 import style from '@/app/Style/MusicAssociations.css'
 
@@ -22,6 +23,34 @@ export default function MusicAssociations(){
     const [loading,setLoading] = useState(true)
     const [userData,setUserData] = useState({})
     const [followdOrgan,setFollowedOrga] = useState([])
+    const [error,setError] = useState('')
+    const [errorHappened,setErrorHappend] = useState(false) 
+
+    const handleErrorHappend = () => {
+        setErrorHappend(!errorHappened)
+    }
+    
+    const handleErrorPages = (err) => {
+
+        setError('error happend please try again later!')
+        if (err.response && err.response.status){
+            if(err.response.status === 400){
+                setError(err.response.data.metadata.messageEng)
+            }else if(err.response.status === 401){
+                window.location.href = '/pages/Error/401';
+                setError(err.response.data.metadata.messageEng)
+            }else if(err.response.status === 404){
+                window.location.href = '/pages/Error/404';
+                setError(err.response.data.metadata.messageEng)
+            }else if(err.response.status === 500){
+                window.location.href = '/pages/Error/500';
+                setError(err.response.data.metadata.messageEng)
+            }
+        }
+        handleErrorHappend()
+        setLoading(false)
+        
+    }
 
     useEffect(() => {
         try{
@@ -47,15 +76,14 @@ export default function MusicAssociations(){
                     
                     await setLoading(false)
 
-                }catch(err){throw err}
+                }catch(err){
+                    handleErrorPages(err)
+                }
             }
 
             fetch()
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
+            handleErrorPages(err)
         }
     } , [])
 
@@ -66,12 +94,9 @@ export default function MusicAssociations(){
     const goToLogin = () => {
         try{
             window.location.href = '/pages/Login'
-        }catch(err){    
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
-        }   
+        }catch(err){
+            handleErrorPages(err)
+        }  
     }
 
     const follow = async (organ) => {
@@ -79,10 +104,7 @@ export default function MusicAssociations(){
             await followdAPI({organ:organ,username:userData.username})
             window.location.reload()
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
+            handleErrorPages(err)
         }
     }
 
@@ -91,10 +113,7 @@ export default function MusicAssociations(){
             await unfollowdAPI({organ:organ,username:userData.username})
             window.location.reload()
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
+            handleErrorPages(err)
         }
     }
 
@@ -127,10 +146,7 @@ export default function MusicAssociations(){
         try{
             window.location.href = `/pages/organ?id=${id}`
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }   
+            handleErrorPages(err)
         }
     }
     
@@ -161,6 +177,20 @@ export default function MusicAssociations(){
                                             <p>{assosiation[i].description}</p>
                                         </div>
                                     </div>
+                                    <div className='numeric-des'>
+                                        <div className='numeric-des-item'>
+                                            <FaUser className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i].follower}</div>
+                                        </div>
+                                        <div className='numeric-des-item'>
+                                            <MdGrid3X3 className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i].no_posts}</div>
+                                        </div>
+                                        <div className='numeric-des-item'>
+                                            <MdClass className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i].no_classes}</div>
+                                        </div>  
+                                    </div>
                             </div>
                         ):
                         (
@@ -185,6 +215,20 @@ export default function MusicAssociations(){
                                             <h1>{assosiation[i+1].name}</h1>
                                             <p>{assosiation[i+1].description}</p>
                                         </div>
+                                    </div>
+                                    <div className='numeric-des'>
+                                        <div className='numeric-des-item'>
+                                            <FaUser className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+1].follower}</div>
+                                        </div>
+                                        <div className='numeric-des-item'>
+                                            <MdGrid3X3 className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+1].no_posts}</div>
+                                        </div>
+                                        <div className='numeric-des-item'>
+                                            <MdClass className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+1].no_classes}</div>
+                                        </div>  
                                     </div>
                             </div>
                         ):
@@ -211,6 +255,20 @@ export default function MusicAssociations(){
                                             <p>{assosiation[i+2].description}</p>
                                         </div>
                                     </div>
+                                    <div className='numeric-des'>
+                                        <div className='numeric-des-item'>
+                                            <FaUser className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+2].follower}</div>
+                                        </div>
+                                        <div className='numeric-des-item'>
+                                            <MdGrid3X3 className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+2].no_posts}</div>
+                                        </div>
+                                        <div className='numeric-des-item'>
+                                            <MdClass className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+2].no_classes}</div>
+                                        </div>  
+                                    </div>
                             </div>
                         ):
                         (
@@ -236,6 +294,20 @@ export default function MusicAssociations(){
                                             <p>{assosiation[i+3].description}</p>
                                         </div>
                                     </div>
+                                    <div className='numeric-des'>
+                                        <div className='numeric-des-item'>
+                                            <FaUser className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+3].follower}</div>
+                                        </div>
+                                        <div className='numeric-des-item'>
+                                            <MdGrid3X3 className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+3].no_posts}</div>
+                                        </div>
+                                        <div className='numeric-des-item'>
+                                            <MdClass className='numeric-des-icon'/>
+                                            <div className='numeric-des-numbers'>{assosiation[i+3].no_classes}</div>
+                                        </div>  
+                                    </div>
                             </div>
                         ):
                         (
@@ -249,33 +321,58 @@ export default function MusicAssociations(){
         return renderedElements
     }
     return (
-        <div className='musicGroupePage'>
+        <React.Fragment>
+            <div className='musicGroupePage'>
+                {
+                    loading?
+                    (
+                        <h1>loading...</h1>
+                    ):
+                    (
+                        <React.Fragment>
+                            {
+                                (authToken) ?
+                                (
+                                    <LoginHeader color={'#0f1e35'}></LoginHeader>
+                                )
+                                :
+                                (<Header color={'#0f1e35'}></Header>)
+                            }
+                            <section className='hero'>
+                                <img className='hero-image' src='/music-group-page.jpg' alt='music-group-page'/>
+                            </section>
+                            <section className='group-section'>
+                                {
+                                    renderElement()
+                                }
+                            </section>
+                        </React.Fragment>
+                    )
+                }
+            </div>
             {
-                loading?
+                errorHappened?
                 (
-                    <h1>loading...</h1>
+                    <div className='error-message-page-container'>
+                        <div className='error-message-container'>
+                            <div className='error-icon-container'>
+                                <div className='error-close-icon-container' onClick={handleErrorHappend}>
+                                    <MdClose className='error-close-icon'></MdClose>
+                                </div>
+                                <div className='error-close-icon-container' onClick={() => {window.location.href='/'}}>
+                                    <MdHome className='error-close-icon'></MdHome>
+                                </div>
+                            </div>
+                            <h1>ERROR</h1>
+                            <br/>
+                            <p>{error}</p>
+                        </div>  
+                    </div>
                 ):
                 (
-                    <React.Fragment>
-                        {
-                            (authToken) ?
-                            (
-                                <LoginHeader color={'#0f1e35'}></LoginHeader>
-                            )
-                            :
-                            (<Header color={'#0f1e35'}></Header>)
-                        }
-                        <section className='hero'>
-                            <img className='hero-image' src='/music-group-page.jpg' alt='music-group-page'/>
-                        </section>
-                        <section className='group-section'>
-                            {
-                                renderElement()
-                            }
-                        </section>
-                    </React.Fragment>
+                    <div/>
                 )
             }
-        </div>
+        </React.Fragment>
     )
 }

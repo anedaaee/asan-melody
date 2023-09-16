@@ -115,7 +115,7 @@ export default function LoginHeader() {
                     </ul>
                     <div className="user-info" style={userDIvStyle}>
                         <div className="user-info-content">
-                            <a className="user-info-a" href="">
+                            <a className="user-info-a" href="/pages/UserInfo">
                                 <label className="user-info-label" htmlFor="user-info-p">
                                     <FaUser className="icon-header"/>
                                 </label>
@@ -149,7 +149,7 @@ export default function LoginHeader() {
                                 </a>
                             </div>
                             ):
-                            (<p>{JSON.stringify(permissionsObj)}</p>)
+                            (<div/>)
                         }
                         {
                             (permissionsObj.teacher)? 

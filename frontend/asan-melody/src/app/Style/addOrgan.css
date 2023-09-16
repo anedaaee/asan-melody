@@ -1,17 +1,13 @@
+@font-face {
+    font-family: 'IranNastaliq';
+    src: url('../asset/Fonts/IranNastaliq.ttf');
+}
 :root {
-    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-primary: "Montserrat", sans-serif;
-    --font-secondary: "Raleway", sans-serif; 
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji","IranNastaliq";
+    --font-primary: "Montserrat", sans-serif ,"IranNastaliq";
+    --font-secondary: "Raleway", sans-serif,"IranNastaliq"; 
 }
   
-/* Colors */
-:root {
-    --color-default: #0f2727;
-    --color-primary: #144272;
-    --color-secondary: #1b2f45;
-    --color-a : #8a540b;
-}
-
 
 body{
     background-color: var(--color-default);
@@ -133,9 +129,11 @@ button {
 } 
 .form-file1:hover{
     padding: 20px;
+    transition: all .5s;
 }
 .form-file2:hover{
     padding: 20px;
+    transition: all .5s;
 }
 .form-file2{
     background: #00f2c3;
@@ -173,6 +171,7 @@ button {
 .form option:hover{
     background: var(--color-primary);
     color: var(--color-a);
+    transition: all .5s;
 }
 @media (max-height:740px) {
     .organ-froms{
@@ -259,6 +258,7 @@ button {
 }
 .error-close-icon-container:hover{
     background: #000;
+    transition: all .5s;
 }
 .error-icon-container{
     display: flex;

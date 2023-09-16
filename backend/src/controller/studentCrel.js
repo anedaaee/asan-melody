@@ -45,9 +45,31 @@ exports.getFavourite = async (req) => {
     try{    
         let query = 'SELECT * FROM asan_melody.organizations WHERE id IN (SELECT organ_id as id FROM asan_melody.fallowed_organ WHERE `user` = ?)'
 
-        const sessions = await request(query,[req.user.username],req)
+        let sessions = await request(query,[req.user.username],req)
 
-        return sessions
+        let result = []
+
+        for (const organ of sessions) {
+            query = 'SELECT COUNT(`user`) AS follower FROM asan_melody.fallowed_organ WHERE organ_id = ?'
+
+            let follower = await request(query,[organ.id],req)
+
+            query = 'SELECT COUNT(class_id) AS no_classes FROM asan_melody.classes WHERE organ = ? AND isActive=1'
+
+            let no_classes = await request(query,[organ.id],req)
+            
+            query = 'SELECT COUNT(id) AS no_posts FROM asan_melody.posts WHERE organ = ? AND isActive=1'
+
+            let no_posts = await request(query,[organ.id],req)
+
+            result.push({
+                ...organ,
+                follower : follower[0].follower,
+                no_classes : no_classes[0].no_classes,
+                no_posts : no_posts[0].no_posts
+            })
+        }
+        return result
     }catch(err){
         throw err
     }

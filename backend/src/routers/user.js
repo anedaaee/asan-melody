@@ -202,4 +202,140 @@ router.put('/refactorUserInfo' , async (req,res) => {
         })
     }
 })
+router.get('/getUserPurchase',async(req,res) => {
+    try{
+        const schema = Joi.object({
+            user : Joi.string()
+                .required()
+        })
+ 
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await userCtrl.getUserPurchase(req,values)
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "array",
+                "data": result
+            }
+        })
+    }catch(err){
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.get('/getReserveByUser',async(req,res)=>{
+    try{
+        const schema = Joi.object({
+            user : Joi.string()
+                .required()
+        })
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await userCtrl.getReseveByUser(req,values)
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "array",
+                "data": result
+            }
+        })
+    }catch(err){
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.delete('/deleteReserve',async(req,res)=>{
+    try{
+        const schema = Joi.object({
+            user : Joi.string()
+                .required(),
+            class : Joi.string()
+                .required()
+        })
+
+        const values = await schema.validateAsync(req.body)
+
+        const result = await userCtrl.deleteReserve(req,values)
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "object",
+                "data": result
+            }
+        })
+    }catch(err){
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+            if(err.details[0].path[0] === 'class') { message = responseMessage(29)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+router.post('/purchase',async(req,res) => {
+    try{
+        const schema = Joi.object({
+            user : Joi.string()
+                .required(),
+            class : Joi.string()
+                .required()
+        })
+ 
+
+        const values = await schema.validateAsync(req.query)
+
+        const result = await userCtrl.purchase(req,values)
+
+        res.status(200).send({
+            "metadata": responseMessage(5),
+            "body": {
+                "type": "array",
+                "data": result
+            }
+        })
+    }catch(err){
+
+        console.log(err);
+        let message = responseMessage(4)
+        if(err.details) {
+            if(err.details[0].path[0] === 'user') { message = responseMessage(6)}
+            if(err.details[0].path[0] === 'class') { message = responseMessage(29)}
+        }
+        if(err.isCustom){
+            message = err.reason
+        }
+        return res.status(400).send({
+            "metadata": message
+        })
+    }
+})
+
 module.exports = router

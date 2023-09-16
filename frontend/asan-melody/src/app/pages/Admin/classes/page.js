@@ -2,7 +2,7 @@
 import React , {useState , useEffect} from 'react'
 
 import { FaUserPlus } from 'react-icons/fa'
-import { MdAdd , MdClose , MdPermMedia} from 'react-icons/md'
+import { MdAdd , MdClose , MdPermMedia , MdHome} from 'react-icons/md'
 
 import style from '@/app/Style/classes.css'
 
@@ -52,18 +52,53 @@ const COLUMNS = [
 
 export default function Organ() {
 
-    const [error,setError] = useState('')
     const [userData,setUserData] = useState({})
     const [loading,setLoading] = useState(true)
     const [classes,setClasses] = useState([])
     const [organs,setOrgans] = useState([])
     const [showImage,setShowImage] = useState(false)
     const [image,setImage] = useState('')
+    const [error,setError] = useState('')
+    const [errorHappened,setErrorHappend] = useState(false) 
+
+    const handleErrorHappend = () => {
+        setErrorHappend(!errorHappened)
+    }
+    
+    const handleErrorPages = (err) => {
+
+        setError('error happend please try again later!')
+        if (err.response && err.response.status){
+            if(err.response.status === 400){
+                setError(err.response.data.metadata.messageEng)
+            }else if(err.response.status === 401){
+                window.location.href = '/pages/Error/401';
+                setError(err.response.data.metadata.messageEng)
+            }else if(err.response.status === 404){
+                window.location.href = '/pages/Error/404';
+                setError(err.response.data.metadata.messageEng)
+            }else if(err.response.status === 500){
+                window.location.href = '/pages/Error/500';
+                setError(err.response.data.metadata.messageEng)
+            }
+        }
+        handleErrorHappend()
+        setLoading(false)
+        
+    }
 
     useEffect(() => {
+        if(!localStorage.getItem('authToken')){
+            window.location.href = '/pages/Error/401'
+        }
+        if(localStorage.getItem('userData')){
+            if(JSON.parse(localStorage.getItem('userData')).role !== 'manager'){
+                window.location.href = '/pages/Error/AccessDenied'
+            }
+        }
         async function fetch(){
             try{
-                await setUserData(JSON.parse(localStorage.getItem('userData')))
+                setUserData(JSON.parse(localStorage.getItem('userData')))
                 
                 let result = await getClassesAPI()
 
@@ -73,12 +108,9 @@ export default function Organ() {
 
                 setOrgans(result.organs)
 
-                await setLoading(false)
+                setLoading(false)
             }catch(err){
-                setError('error happend please try again later!')
-                if(err.response.status === 400){
-                    setError(err.response.data.metadata.messageEng)
-                }
+                handleErrorPages(err)
             }
         }
 
@@ -97,14 +129,13 @@ export default function Organ() {
             async function fetch(){
                 try{
 
-                }catch(err){throw err}
+                }catch(err){
+                    handleErrorPages(err)
+                }
             }
             fetch()
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
+            handleErrorPages(err)
         }
     }   
 
@@ -114,25 +145,19 @@ export default function Organ() {
 
     const getImage = async (profile) =>{
         try{
-            await setImage(profile)
-            await setShowImage(true)
+            setImage(profile)
+            setShowImage(true)
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
+            handleErrorPages(err)
         }
     }
 
     const closeImage = async () =>{
         try{
-            await setImage('')
-            await setShowImage(false)
+            setImage('')
+            setShowImage(false)
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
+            handleErrorPages(err)
         }
     } 
 
@@ -142,14 +167,13 @@ export default function Organ() {
                 try{
                     await deleteClassAPI({classId:val.class_id})
                     await window.location.reload()
-                }catch(err){throw err}
+                }catch(err){
+                    handleErrorPages(err)
+                }
             }
             fetch()
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
+            handleErrorPages(err)
         }
     }
 
@@ -163,108 +187,129 @@ export default function Organ() {
             }
             fetch()
         }catch(err){
-            setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
-            }
+            handleErrorPages(err)
         }
     }
     return(
-
-        <div className='admin-page' >
-            {
-                loading? 
-                (
-                    <p>loading</p>
-                )
-                :
-                (
-                    <div>
+        <React.Fragment>
+            <div className='admin-page' >
+                {
+                    loading? 
+                    (
+                        <p>loading</p>
+                    )
+                    :
+                    (
                         <div>
-                            {
-                                showImage?(
-                                    <div className='image'>  
-                                        <MdClose className='close-icon' onClick={() => closeImage()}/>
-                                        <img src={`${IMG_KEY}${image}`} onError={(e) => handleImageError(e)} alt={image}></img>
-                                    </div>
-                                ):(
-                                    <div/>
-                                )
-                            }
-                        </div>
-                        <Header userData={userData}></Header>
-                        <div className='page-container'>
-                            <Navigation></Navigation>
-                            <div className='organ-table-container'>                                
-                                <table className='organ-table'>
-                                    <tr>
+                            <div>
+                                {
+                                    showImage?(
+                                        <div className='image'>  
+                                            <MdClose className='close-icon' onClick={() => closeImage()}/>
+                                            <img src={`${IMG_KEY}${image}`} onError={(e) => handleImageError(e)} alt={image}></img>
+                                        </div>
+                                    ):(
+                                        <div/>
+                                    )
+                                }
+                            </div>
+                            <Header userData={userData}></Header>
+                            <div className='page-container'>
+                                <Navigation></Navigation>
+                                <div className='organ-table-container'>                                
+                                    <table className='organ-table'>
+                                        <tr>
+                                            {
+                                                COLUMNS.map((val) => {
+                                                    return(
+                                                        <th>{val.Header}</th>
+                                                    )
+                                                })
+                                            }
+                                        </tr>
                                         {
-                                            COLUMNS.map((val) => {
+                                            classes.map((val,key) => {
                                                 return(
-                                                    <th>{val.Header}</th>
+                                                    <React.Fragment>
+                                                        <tr key={key} onClick={() => clickRow(val,key)}>
+                                                            <td>{key+1}</td>
+                                                            <td>{val.name}</td>
+                                                            <td>{val.description}</td>
+                                                            <td>{val.teacher}</td>
+                                                            <td>{val.price}</td>
+                                                            <td>{val.number}</td>
+                                                            <td>
+                                                                {
+                                                                    organs.map((organ) => {
+                                                                        if (organ.id === val.organ){
+                                                                            return(
+                                                                                organ.name
+                                                                            )
+                                                                        }
+                                                                    })
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                <img className='table-image' src={`${IMG_KEY}${val.image}`} onClick={ () => getImage(val.image)} alt={val.image} onError={(e) => handleImageError(e)}/>
+                                                            </td>
+                                                            <td>{val.address}</td>
+                                                            <td>{val.isActive}</td>
+                                                            <td>
+                                                            {
+                                                                (val.isActive === 1)?
+                                                                (
+
+                                                                    <input type='button' value={'DELETE'} className='table-input-btn' onClick={() => deleteClass(val)}/>
+                                                                ):
+                                                                (
+                                                                    <input type='button' value={'REFACTORE'} className='table-input-btn' onClick={() => refactoreClass(val)}/>
+                                                                )
+                                                                
+                                                            }
+                                                            </td>
+                                                        </tr>
+                                                    </React.Fragment>
                                                 )
                                             })
                                         }
-                                    </tr>
-                                    {
-                                        classes.map((val,key) => {
-                                            return(
-                                                <React.Fragment>
-                                                    <tr key={key} onClick={() => clickRow(val,key)}>
-                                                        <td>{key+1}</td>
-                                                        <td>{val.name}</td>
-                                                        <td>{val.description}</td>
-                                                        <td>{val.teacher}</td>
-                                                        <td>{val.price}</td>
-                                                        <td>{val.number}</td>
-                                                        <td>
-                                                            {
-                                                                organs.map((organ) => {
-                                                                    if (organ.id === val.organ){
-                                                                        return(
-                                                                            organ.name
-                                                                        )
-                                                                    }
-                                                                })
-                                                            }
-                                                        </td>
-                                                        <td>
-                                                            <img className='table-image' src={`${IMG_KEY}${val.image}`} onClick={ () => getImage(val.image)} alt={val.image} onError={(e) => handleImageError(e)}/>
-                                                        </td>
-                                                        <td>{val.address}</td>
-                                                        <td>{val.isActive}</td>
-                                                        <td>
-                                                        {
-                                                            (val.isActive === 1)?
-                                                            (
-
-                                                                <input type='button' value={'DELETE'} className='table-input-btn' onClick={() => deleteClass(val)}/>
-                                                            ):
-                                                            (
-                                                                <input type='button' value={'REFACTORE'} className='table-input-btn' onClick={() => refactoreClass(val)}/>
-                                                            )
-                                                            
-                                                        }
-                                                        </td>
-                                                    </tr>
-                                                </React.Fragment>
-                                            )
-                                        })
-                                    }
-                                    <a className='add-link' href='/pages/Admin/classes/addClass'>
-                                        <label htmlFor='add'>
-                                            <MdAdd className='add-icon'/>
-                                        </label>
-                                        <p className='add-btn' id='add'>ADD NEW</p>
-                                    </a>
-                                </table>
+                                        <a className='add-link' href='/pages/Admin/classes/addClass'>
+                                            <label htmlFor='add'>
+                                                <MdAdd className='add-icon'/>
+                                            </label>
+                                            <p className='add-btn' id='add'>ADD NEW</p>
+                                        </a>
+                                    </table>
+                                </div>
                             </div>
+                            <Footer></Footer>
                         </div>
-                        <Footer></Footer>
+                    )
+                }
+                <p id='error'>{error}</p>
+            </div>
+            {
+                errorHappened?
+                (
+                    <div className='error-message-page-container'>
+                        <div className='error-message-container'>
+                            <div className='error-icon-container'>
+                                <div className='error-close-icon-container' onClick={handleErrorHappend}>
+                                    <MdClose className='error-close-icon'></MdClose>
+                                </div>
+                                <div className='error-close-icon-container' onClick={() => {window.location.href='/'}}>
+                                    <MdHome className='error-close-icon'></MdHome>
+                                </div>
+                            </div>
+                            <h1>ERROR</h1>
+                            <br/>
+                            <p>{error}</p>
+                        </div>  
                     </div>
+                ):
+                (
+                    <div/>
                 )
             }
-            <p id='error'>{error}</p>
-        </div>
+        </React.Fragment>
     )
 }

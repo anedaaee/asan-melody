@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'IranNastaliq';
+  src: url('../asset/Fonts/IranNastaliq.ttf');
+}
+:root {
+  --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji","IranNastaliq";
+  --font-primary: "Montserrat", sans-serif ,"IranNastaliq";
+  --font-secondary: "Raleway", sans-serif,"IranNastaliq"; 
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -100,6 +110,7 @@ body{
   
   #footer .links ul a:hover {
     color: #ffc451;
+    transition: all .5s;
   }
   .map{
     margin: 2%;
@@ -117,3 +128,20 @@ body{
     text-align: center;
   }
 }   
+
+.sponser-icon-container{
+  display: flex;
+}
+.sponser-icon-container a{
+  border-radius: 10px;
+  margin: 10px;
+}
+.sponser-icon-container a :hover{
+  background-color: #53606d;
+  border-radius: 10px;
+  margin: 10px;
+}
+.sponser-icon-container a img{
+  width: 150px;
+  height: auto;
+}

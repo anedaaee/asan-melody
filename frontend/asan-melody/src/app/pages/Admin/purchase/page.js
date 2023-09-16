@@ -1,7 +1,7 @@
 'use client'
 import React , {useState , useEffect} from 'react'
 
-import {  MdClose , MdCheck} from 'react-icons/md'
+import {  MdClose , MdCheck , MdHome} from 'react-icons/md'
 
 import style from '@/app/Style/purchase.css'
 
@@ -37,28 +37,54 @@ const COLUMNS = [
 
 export default function Purchase() {
 
-    const [error,setError] = useState('')
     const [userData,setUserData] = useState({})
     const [loading,setLoading] = useState(true)
     const [purchases,setPurchases] = useState([])
     const [image,setImage] = useState([])
     const [showImage,setShowImage] = useState(false)
+    const [error,setError] = useState('')
+    const [errorHappened,setErrorHappend] = useState(false) 
+
+    const handleErrorHappend = () => {
+        setErrorHappend(!errorHappened)
+    }
 
     useEffect(() => {
+        if(!localStorage.getItem('authToken')){
+            window.location.href = '/pages/Error/401'
+        }
+        if(localStorage.getItem('userData')){
+            if(JSON.parse(localStorage.getItem('userData')).role !== 'manager'){
+                window.location.href = '/pages/Error/AccessDenied'
+            }
+        }
         async function fetch(){
             try{
-                await setUserData(JSON.parse(localStorage.getItem('userData')))
+                setUserData(JSON.parse(localStorage.getItem('userData')))
 
                 let result = await getPurchaseAPI()
 
-                await setPurchases(result)
+                setPurchases(result)
 
-                await setLoading(false)
+                setLoading(false)
             }catch(err){
                 setError('error happend please try again later!')
-                if(err.response.status === 400){
-                    setError(err.response.data.metadata.messageEng)
+                if (err.response && err.response.status){
+                    if(err.response.status === 400){
+                        setError(err.response.data.metadata.messageEng)
+                    }else if(err.response.status === 401){
+                        window.location.href = '/pages/Error/401';
+                        setError(err.response.data.metadata.messageEng)
+                    }else if(err.response.status === 404){
+                        window.location.href = '/pages/Error/404';
+                        setError(err.response.data.metadata.messageEng)
+                    }else if(err.response.status === 500){
+                        window.location.href = '/pages/Error/500';
+                        setError(err.response.data.metadata.messageEng)
+                    }
                 }
+                handleErrorHappend()
+                setLoading(false)
             }
         }
 
@@ -68,25 +94,51 @@ export default function Purchase() {
 
     const getImage = async (profile) =>{
         try{
-            await setImage(profile)
-            await setShowImage(true)
+            setImage(profile)
+            setShowImage(true)
         }catch(err){
             setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
+            if (err.response && err.response.status){
+                if(err.response.status === 400){
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 401){
+                    window.location.href = '/pages/Error/401';
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 404){
+                    window.location.href = '/pages/Error/404';
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 500){
+                    window.location.href = '/pages/Error/500';
+                    setError(err.response.data.metadata.messageEng)
+                }
             }
+            handleErrorHappend()
+            setLoading(false)
         }
     }
 
     const closeImage = async () =>{
         try{
-            await setImage('')
-            await setShowImage(false)
+            setImage('')
+            setShowImage(false)
         }catch(err){
             setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
+            if (err.response && err.response.status){
+                if(err.response.status === 400){
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 401){
+                    window.location.href = '/pages/Error/401';
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 404){
+                    window.location.href = '/pages/Error/404';
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 500){
+                    window.location.href = '/pages/Error/500';
+                    setError(err.response.data.metadata.messageEng)
+                }
             }
+            handleErrorHappend()
+            setLoading(false)
         }
     } 
 
@@ -100,90 +152,128 @@ export default function Purchase() {
             window.location.reload()
         }catch(err){
             setError('error happend please try again later!')
-            if(err.response.status === 400){
-                setError(err.response.data.metadata.messageEng)
+            if (err.response && err.response.status){
+                if(err.response.status === 400){
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 401){
+                    window.location.href = '/pages/Error/401';
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 404){
+                    window.location.href = '/pages/Error/404';
+                    setError(err.response.data.metadata.messageEng)
+                }else if(err.response.status === 500){
+                    window.location.href = '/pages/Error/500';
+                    setError(err.response.data.metadata.messageEng)
+                }
             }
+            handleErrorHappend()
+            setLoading(false)
         }
     }
+
     return(
-
-        <div className='admin-page' >
-            {
-                loading? 
-                (
-                    <p>loading</p>
-                )
-                :
-                (
-                    <div>
-                         <div>
-                            {
-                                showImage?(
-                                    <div className='image'>  
-                                        <MdClose className='close-icon' onClick={() => closeImage()} />
-                                        <img src={`${IMG_KEY}${image}`} onError={(e) => handleImageError(e)} alt={image}></img>
-                                    </div>
-                                ):(
-                                    <div/>
-                                )
-                            }
-                        </div>
-                        <Header userData={userData}></Header>
-                        <div className='page-container'>
-                            <Navigation></Navigation>
-                            <div className='organ-table-container'>                                
-                                <table className='organ-table'>
-                                    <tr>
-                                        {
-                                            COLUMNS.map((val) => (
-                                                <th>{val.Header}</th>
-                                            ))
-                                        }
-                                    </tr>
-                                    {
-                                        purchases.map((val,key)=> {
-                                            
-                                            const date = new Date(val.date);
-
-                                            const year = date.getFullYear();
-                                            const month = date.getMonth() + 1;
-                                            const day = date.getDate();
-
-                                            const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-                                            return(
-                                                <tr>
-                                                    <td>{key}</td>
-                                                    <td>{val.user}</td>
-                                                    <td>{val.class}</td>
-                                                    <td>{formattedDate}</td>
-                                                    <td>
-                                                        <img className='table-image' src={`${IMG_KEY}${val.receipt}`} onClick={ () => getImage(val.receipt)} alt={val.receipt} onError={(e) => handleImageError(e)}/>   
-                                                    </td>
-                                                        {
-                                                            (val.admit===1)?
-                                                            (
-                                                                <td>
-                                                                    <MdCheck/>
-                                                                </td>
-                                                            ):
-                                                            (
-                                                                <td>
-                                                                    <input type='button' value={'ADMIT'} className='table-input-btn' onClick={() => admit(val)}/>
-                                                                </td>
-                                                            )
-                                                        }
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                </table>
+        <React.Fragment>
+            <div className='admin-page' >
+                {
+                    loading? 
+                    (
+                        <p>loading</p>
+                    )
+                    :
+                    (
+                        <div>
+                            <div>
+                                {
+                                    showImage?(
+                                        <div className='image'>  
+                                            <MdClose className='close-icon' onClick={() => closeImage()} />
+                                            <img src={`${IMG_KEY}${image}`} onError={(e) => handleImageError(e)} alt={image}></img>
+                                        </div>
+                                    ):(
+                                        <div/>
+                                    )
+                                }
                             </div>
+                            <Header userData={userData}></Header>
+                            <div className='page-container'>
+                                <Navigation></Navigation>
+                                <div className='organ-table-container'>                                
+                                    <table className='organ-table'>
+                                        <tr>
+                                            {
+                                                COLUMNS.map((val) => (
+                                                    <th>{val.Header}</th>
+                                                ))
+                                            }
+                                        </tr>
+                                        {
+                                            purchases.map((val,key)=> {
+                                                
+                                                const date = new Date(val.date);
+
+                                                const year = date.getFullYear();
+                                                const month = date.getMonth() + 1;
+                                                const day = date.getDate();
+
+                                                const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+                                                return(
+                                                    <tr>
+                                                        <td>{key}</td>
+                                                        <td>{val.user}</td>
+                                                        <td>{val.class}</td>
+                                                        <td>{formattedDate}</td>
+                                                        <td>
+                                                            <img className='table-image' src={`${IMG_KEY}${val.receipt}`} onClick={ () => getImage(val.receipt)} alt={val.receipt} onError={(e) => handleImageError(e)}/>   
+                                                        </td>
+                                                            {
+                                                                (val.admit===1)?
+                                                                (
+                                                                    <td>
+                                                                        <MdCheck/>
+                                                                    </td>
+                                                                ):
+                                                                (
+                                                                    <td>
+                                                                        <input type='button' value={'ADMIT'} className='table-input-btn' onClick={() => admit(val)}/>
+                                                                    </td>
+                                                                )
+                                                            }
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                            <Footer></Footer>
                         </div>
-                        <Footer></Footer>
+                    )
+                }
+                <p id='error'>{error}</p>
+            </div>
+            {
+                errorHappened?
+                (
+                    <div className='error-message-page-container'>
+                        <div className='error-message-container'>
+                            <div className='error-icon-container'>
+                                <div className='error-close-icon-container' onClick={handleErrorHappend}>
+                                    <MdClose className='error-close-icon'></MdClose>
+                                </div>
+                                <div className='error-close-icon-container' onClick={() => {window.location.href='/'}}>
+                                    <MdHome className='error-close-icon'></MdHome>
+                                </div>
+                            </div>
+                            <h1>ERROR</h1>
+                            <br/>
+                            <p>{error}</p>
+                        </div>  
                     </div>
+                ):
+                (
+                    <div/>
                 )
             }
-            <p id='error'>{error}</p>
-        </div>
+        </React.Fragment>
     )
 }

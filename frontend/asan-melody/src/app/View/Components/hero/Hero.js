@@ -17,6 +17,14 @@ export default function Hero() {
             <div className="container">
                 <div className="row">
                     <div className="col-xl-4">
+                        <div className="sponser-icon-container">
+                            <a href="/pages/About/AsanMelody">
+                                <img src="/asanMelody.png" alt="asan melody icon"/>
+                            </a>
+                            <a href="/pages/About/Homayoon">
+                                <img src="/homayoon.png" alt="asan melody icon"/>
+                            </a>
+                        </div>
                         <h2 data-aos="fade-up">The easiest way to succeed in music</h2>
                         <div className="blockquote-container">
                             <div className="blockquote-div">

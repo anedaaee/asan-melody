@@ -1,8 +1,14 @@
-:root {
-    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-primary: "Montserrat", sans-serif;
-    --font-secondary: "Raleway", sans-serif; 
+@font-face {
+    font-family: 'IranNastaliq';
+    src: url('../asset/Fonts/IranNastaliq.ttf');
 }
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji","IranNastaliq";
+    --font-primary: "Montserrat", sans-serif ,"IranNastaliq";
+    --font-secondary: "Raleway", sans-serif,"IranNastaliq"; 
+}
+  
+
   
 /* Colors */
 :root {
@@ -84,6 +90,7 @@ body{
 }
 #register a:hover{
     color: var(--color-default);
+    transition: all .5s;
 }
 .form-group {
     margin-bottom: 10px;
@@ -199,6 +206,7 @@ button {
     margin: auto;
 }
 .error-close-icon-container:hover{
+    transition: all .5s;
     background: #000;
 }
 .error-icon-container{

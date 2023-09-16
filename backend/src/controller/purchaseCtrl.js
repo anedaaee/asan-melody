@@ -156,11 +156,11 @@ exports.purchase = async (req,values) => {
                     ...values
                 }
 
+                await fs.promises.writeFile(receipt_path , receipt.data)
                 await addPurchaseToDb(req,newValues)
                 await deleteReserveAfterPurchase(req,newValues)
                 //await deleteClassAfterPurchase(req,newValues)
 
-                await fs.promises.writeFile(receipt_path , receipt.data)
 
                 return await getPurchase(req,values)
             }else{

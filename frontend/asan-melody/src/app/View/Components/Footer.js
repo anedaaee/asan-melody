@@ -28,6 +28,15 @@ export default function Footer(props) {
                 </ul>
             </div>
             <iframe className="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8106.655138960856!2d48.40069375913706!3d36.68304221150246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ff618821e354add%3A0xd31d530de5fca9eb!2sUniversity%20of%20Zanjan!5e0!3m2!1sen!2s!4v1694588466128!5m2!1sen!2s" width="600" height="450" style={{border:'none',borderRadius:'10px'}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <br/>
+            <div className="sponser-icon-container">
+                <a href="/pages/About/AsanMelody">
+                    <img src="/asanMelody.png" alt="asan melody icon"/>
+                </a>
+                <a href="/pages/About/Homayoon">
+                    <img src="/homayoon.png" alt="asan melody icon"/>
+                </a>
+            </div>
         </footer>
     )
 }

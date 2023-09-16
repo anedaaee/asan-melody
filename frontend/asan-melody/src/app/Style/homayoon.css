@@ -1,0 +1,124 @@
+@font-face {
+    font-family: 'IranNastaliq';
+    src: url('../asset/Fonts/IranNastaliq.ttf');
+}
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji","IranNastaliq";
+    --font-primary: "Montserrat", sans-serif ,"IranNastaliq";
+    --font-secondary: "Raleway", sans-serif,"IranNastaliq"; 
+}
+  
+/* Colors */
+:root {
+    --color-default: #0f2727;
+    --color-primary: #144272;
+    --color-secondary: #1b2f45;
+    --color-a : #c0c7c9;
+}
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html{
+    padding: 0;
+    margin: 0px;
+    background-color: #755fa8;
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.background{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    filter: blur(10px);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+}
+.containter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+    min-height: 100vh;
+    max-width: fit-content;
+    max-height: fit-content;
+}
+.profile{
+    width: 20%;
+}
+
+.des h1{
+    font-family: 'IranNastaliq';
+    color: var(--color-a);
+    font-size: 400%;
+    text-align: right;
+}
+.des h2{
+    font-family: 'IranNastaliq';
+    color: var(--color-a);
+    text-align: right;
+    font-size: 100%;
+}
+
+.des{
+    background-image: linear-gradient(rgba(27, 47, 69, 0.8),rgba(20, 66, 114, 0.8) ,rgba(27, 47, 69, 0.8));
+    padding: 50px;
+    border-radius: 10px;
+    filter: opacity(10px);
+}
+
+.des ul li{
+    font-family: 'IranNastaliq';
+    color: var(--color-a);
+    text-align: right;
+    margin-right: 20px;
+    font-size: 80%;
+}
+.member-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+
+.member{
+    min-width: 250px;
+    min-height: 600px;
+    background : var(--color-primary);
+    border-radius: 10px;
+    max-width: fit-content;
+    max-height: fit-content;
+    margin: 10px;
+}
+
+.member img{
+    width: 250px;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.member h1{
+    color: var(--color-a);
+    font-family: 'IranNastaliq';
+    text-align: center;
+}
+.member h3{
+    color: var(--color-a);
+    font-family: 'IranNastaliq';
+    text-align: center;
+}
+.member h4{
+    color: var(--color-a);
+    text-align: center;
+}

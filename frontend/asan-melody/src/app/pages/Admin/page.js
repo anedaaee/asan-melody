@@ -27,6 +27,14 @@ export default function Admin() {
     }
 
     useEffect(() => {
+        if(!localStorage.getItem('authToken')){
+            window.location.href = '/pages/Error/401'
+        }
+        if(localStorage.getItem('userData')){
+            if(JSON.parse(localStorage.getItem('userData')).role !== 'manager'){
+                window.location.href = '/pages/Error/AccessDenied'
+            }
+        }
         async function fetch(){
             try{
                 await setUserData(JSON.parse(localStorage.getItem('userData')))
@@ -37,7 +45,7 @@ export default function Admin() {
                 setLoading(false)
             }catch(err){
                 setError('error happend please try again later!')
-                if (err.response.status){
+                if (err.response && err.response.status){
                     if(err.response.status === 400){
                         setError(err.response.data.metadata.messageEng)
                     }else if(err.response.status === 401){
@@ -51,7 +59,7 @@ export default function Admin() {
                         setError(err.response.data.metadata.messageEng)
                     }
                 }
-                setErrorHappend(true)
+                handleErrorHappend()
                 setLoading(false)
             }
         }

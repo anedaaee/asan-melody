@@ -6,10 +6,32 @@ const fs = require('fs');
 
 exports.getOrgans = async (req)=> {
     try{
-        const query = `SELECT * FROM organizations;`
+        let query = `SELECT * FROM organizations;`
 
-        const result = await request(query,[],req)
+        let organs = await request(query,[],req)
 
+        let result = []
+
+        for (const organ of organs) {
+            query = 'SELECT COUNT(`user`) AS follower FROM asan_melody.fallowed_organ WHERE organ_id = ?'
+
+            let follower = await request(query,[organ.id],req)
+
+            query = 'SELECT COUNT(class_id) AS no_classes FROM asan_melody.classes WHERE organ = ? AND isActive=1'
+
+            let no_classes = await request(query,[organ.id],req)
+            
+            query = 'SELECT COUNT(id) AS no_posts FROM asan_melody.posts WHERE organ = ? AND isActive=1'
+
+            let no_posts = await request(query,[organ.id],req)
+
+            result.push({
+                ...organ,
+                follower : follower[0].follower,
+                no_classes : no_classes[0].no_classes,
+                no_posts : no_posts[0].no_posts
+            })
+        }
         return result;
 
     }catch(err){throw err}
@@ -48,7 +70,7 @@ addOrganToDb = async (req , values)=> {
 
         await request(query,[values.id,values.name,values.manager,values.address,values.phone,values.type,values.profile_image,values.background_image,values.description],req)
 
-        query = `INSERT INTO asan_melody.user_management (username,organ,permission) VALUES (?,?,'manager');`
+        query = `INSERT INTO asan_melody.user_management (username,organ,permission) VALUES (?,?,'admin');`
 
         await request(query,[values.manager,values.id],req)
 

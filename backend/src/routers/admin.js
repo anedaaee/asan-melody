@@ -211,6 +211,7 @@ router.post('/addPosts',async(req,res) => {
             "metadata": responseMessage(5),
         })
     }catch(err){
+        console.log(err);
         let message = responseMessage(4)
         if(err.isCustom){
             message = err.reason
